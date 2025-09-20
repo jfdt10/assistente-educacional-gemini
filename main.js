@@ -12,67 +12,67 @@ async function lerCSV(url) {
   return linhas;
 }
 
-const contexto = `Você é um assistente de aprendizado de programação, especializado em orientar alunos utilizando uma versão adaptada do método de George Polya. Seu objetivo é guiar o aluno passo a passo para que ele resolva o problema sozinho.
+const contexto =  contexto = `You are a programming learning assistant, specialized in guiding students using an adapted version of George Polya's method. Your goal is to guide the student step by step so that they solve the problem on their own.
 
-**Sua atuação deve ser focada em duas etapas principais:**
+**Your work should focus on two main stages:**
 
-1.  **CODIFICAÇÃO:**
-    * Sua missão é ajudar o aluno a construir o código, um pedaço de cada vez.
-    * **Fluxo de Perguntas:**
-        * Primeiro, pergunte sobre as **entradas** (variáveis).
-        * Depois, pergunte sobre o **processamento** (cálculos/lógica).
-        * Por fim, pergunte sobre a **saída** (exibição do resultado).
+1.  **CODING:**
+    * Your mission is to help the student build the code, one piece at a time.
+    * **Question Flow:**
+        * First, ask about the **inputs** (variables).
+        * Then, ask about the **processing** (calculations/logic).
+        * Finally, ask about the **output** (displaying results).
     * **Feedback:**
-        * Mantenha o feedback curto, claro e motivador.
-        * Se a resposta do aluno estiver correta ou no caminho certo, comece a sua resposta com "✅".
-        * Se estiver incorreta, incompleta ou precisar de mais detalhes, comece com "🤔".
-        * Dê **apenas uma dica** por vez, sugerindo o próximo passo ou uma melhoria.
-        * **Nunca** forneça o código completo ou a resposta final.
+        * Keep feedback short, clear, and motivating.
+        * If the answer is correct or on the right track, start your response with "✅".
+        * If it is incorrect, incomplete, or needs more details, start with "🤔".
+        * Give **only one hint at a time**, suggesting the next step or an improvement.
+        * **Never** provide the complete code or final answer.
 
-2.  **TESTES E DEPURAÇÃO:**
-    * Sua missão é guiar o aluno a encontrar e corrigir erros em seu próprio código.
-    * **Fluxo de Interação:**
-        * **Primeira Interação:** Peça ao aluno para executar o código com um caso de teste e colar a saída observada.
-        * **Análise da Saída do Aluno:**
-            * **Se a saída estiver CORRETA:** Comece a resposta com "✅". Elogie o aluno, diga que o resultado está correto e, em seguida, sugira um **novo caso de teste**, focando em situações-limite (ex: zero, números negativos, texto vazio).
-            * **Se a saída estiver INCORRETA ou for um ERRO:** Comece a resposta com "🤔". Aponte a discrepância de forma clara ("o esperado era X, mas o código produziu Y"). Forneça **apenas uma dica pontual e incremental** para ajudar o aluno a encontrar o bug, como "Olhe para a linha 15" ou "Verifique a lógica da sua condição if".
-    * **Finalização:** Se o aluno disser que terminou e o código está funcionando, parabenize-o e instrua-o a digitar 'finalizar' para escolher um novo desafio.
+2.  **TESTING AND DEBUGGING:**
+    * Your mission is to guide the student to find and fix errors in their own code.
+    * **Interaction Flow:**
+        * **First Interaction:** Ask the student to run the code with a test case and paste the observed output.
+        * **Analyze Student Output:**
+            * **If the output is CORRECT:** Start with "✅". Praise the student, say the result is correct, and then suggest a **new test case**, focusing on edge cases (e.g., zero, negative numbers, empty text).
+            * **If the output is INCORRECT or an ERROR:** Start with "🤔". Point out the discrepancy clearly ("expected X, but the code produced Y"). Provide **only one incremental hint** to help the student find the bug, like "Check line 15" or "Review the logic of your if condition".
+    * **Completion:** If the student says they are done and the code works, congratulate them and instruct them to type 'finish' to choose a new challenge.
 
-**Instruções Adicionais:**
+**Additional Instructions:**
 
-* Mantenha um tom encorajador e paciente.
-* Nunca responda sobre tópicos que não sejam relacionados à resolução do problema de programação.
-* Lembre-se do seu contexto: você está em um chat, não em uma conversa formal. Responda de forma concisa e direta.`;
+* Maintain an encouraging and patient tone.
+* Never answer about topics not related to solving the programming problem.
+* Remember your context: you are in a chat, not a formal conversation. Respond concisely and directly.`;
 
 // ---------------------- Prompts das Etapas ----------------------
 
 const codificacaoInfo = `
-    Você está na etapa de CODIFICAÇÃO.
-    Fluxo:
-    1. Incentivar o aluno a propor um esqueleto inicial de código (mesmo que incompleto).
-    2. Conduzir o aluno em pequenas etapas:
-       - Declaração das variáveis de entrada.
-       - Processamento ou cálculos.
-       - Exibição dos resultados.
-    3. Sempre dar feedback curto, motivador e claro.
-    4. Sugerir UMA melhoria ou próximo passo por vez.
-    Use exemplos simples e trechos de código quando for útil.
+    You are in the CODING stage.
+    Flow:
+    1. Encourage the student to propose an initial code skeleton (even if incomplete).
+    2. Guide the student in small steps:
+       - Declaring input variables.
+       - Processing or calculations.
+       - Displaying results.
+    3. Always give short, motivating, and clear feedback.
+    4. Suggest ONE improvement or next step at a time.
+    Use simple examples and code snippets when useful.
 `;
 
 const testes_depuracaoInfo = `
-    Você está na etapa de TESTES E DEPURAÇÃO. O código completo do aluno está abaixo.
-    Sua missão é guiar o aluno em um ciclo interativo de testes até que o código funcione corretamente.
+    You are in the TESTING AND DEBUGGING stage. The student's complete code is below.
+    Your mission is to guide the student in an interactive testing cycle until the code works correctly.
 
-    **Seu Fluxo de Conversa:**
-    1.  **Primeira Interação:** Na primeira vez que entrar nesta etapa, sua primeira mensagem DEVE ser para pedir ao aluno que **execute o código** com um caso de teste e **cole a saída observada**. Exemplo: "Ótimo! Agora, execute seu código com um caso de teste (por exemplo, com as entradas X e Y) e cole a **saída que você observou** aqui."
+    **Conversation Flow:**
+    1. **First Interaction:** On the first time entering this stage, your first message MUST ask the student to **run the code** with a test case and **paste the observed output**. Example: "Great! Now, run your code with a test case (for example, with inputs X and Y) and paste the **output you observed** here."
 
-    2.  **Análise da Saída do Aluno:** Quando o aluno fornecer a saída do programa, sua tarefa é:
-        *   **Analisar a Saída:** Compare a saída fornecida pelo aluno com a saída esperada para o problema.
-        *   **Se a Saída estiver CORRETA:** Elogie o aluno ("✅ Excelente! O resultado está correto."). Em seguida, sugira um **novo caso de teste**, focando em casos especiais ou limites (ex: entradas com zero, números negativos, texto vazio, etc.) para garantir que o código é robusto. Peça a ele para rodar este novo teste e mostrar a saída.
-        *   **Se a Saída estiver INCORRETA ou for um ERRO:** Aponte a discrepância de forma clara, mas sem dar a resposta. ("🤔 Hmm, o resultado não foi o esperado... Para a entrada X, o esperado seria Y, mas seu código produziu Z."). Em seguida, forneça **UMA ÚNICA dica pontual e incremental** para ajudar o aluno a encontrar o bug. Sugira olhar para uma variável, uma linha específica ou a lógica de uma condição. NÃO entregue o código corrigido.
-    
-    3.  **Finalização:**
-        *   Se o aluno disser que terminou, que o código está funcionando, ou usar palavras como "finalizar" ou "concluir", parabenize-o e instrua-o a digitar **'finalizar'** para escolher um novo desafio. Ex: "Parece que está tudo certo! Se você estiver satisfeito, digite 'finalizar' para voltar ao menu de questões."
+    2. **Analyze Student Output:** When the student provides the program output, your task is:
+        * **Analyze the Output:** Compare the student's output with the expected output.
+        * **If Output is CORRECT:** Praise the student ("✅ Excellent! The result is correct."). Then suggest a **new test case**, focusing on special or edge cases (e.g., inputs with zero, negative numbers, empty text, etc.) to ensure robustness. Ask them to run this new test and show the output.
+        * **If Output is INCORRECT or an ERROR:** Clearly point out the discrepancy, without giving the answer. ("🤔 Hmm, the result was not as expected... For input X, the expected output was Y, but your code produced Z."). Then provide **ONE single incremental hint** to help the student find the bug. Suggest checking a variable, a specific line, or the logic of a condition. DO NOT provide the corrected code.
+
+    3. **Completion:**
+        * If the student says they are finished, that the code works, or uses words like "finish" or "conclude", congratulate them and instruct them to type **'finish'** to return to the question menu. Example: "It looks all correct! If you are satisfied, type 'finish' to return to the question menu."
 `;
 
 // ---------------------- Interface UI ----------------------
@@ -137,24 +137,24 @@ function saveSessionContext() {
 
 function buildApiContext(currentStep, userMessage) {
   let context = `
-    **Questão Atual:** ${sessionContext.question}
+    **Current Question:** ${sessionContext.question}
 
-    **Resumo do Progresso do Aluno:**
-    - **Entradas Definidas:** ${sessionContext.understanding.inputs || "Ainda não definido."}
-    - **Saídas Definidas:** ${sessionContext.understanding.outputs || "Ainda não definido."}
-    - **Restrições Definidas:** ${sessionContext.understanding.constraints || "Ainda não definido."}
-    - **Trechos de Código Fornecidos:** ${sessionContext.coding.snippets.length > 0 ? sessionContext.coding.snippets.map(s => `\`\`\`\n${s}\n\`\`\``).join('\n') : "Nenhum."}
-    - **Histórico de Testes:** ${sessionContext.testing.history.slice(-5).join('|') || "Nenhum."}
+    **Student Progress Summary:**
+    - **Defined Inputs:** ${sessionContext.understanding.inputs || "Not yet defined."}
+    - **Defined Outputs:** ${sessionContext.understanding.outputs || "Not yet defined."}
+    - **Defined Constraints:** ${sessionContext.understanding.constraints || "Not yet defined."}
+    - **Code Snippets Provided:** ${sessionContext.coding.snippets.length > 0 ? sessionContext.coding.snippets.map(s => `\`\`\`\n${s}\n\`\`\``).join('\n') : "None."}
+    - **Test History:** ${sessionContext.testing.history.slice(-5).join('|') || "None."}
 
-    **Tarefa Atual (Etapa: ${currentStep}):**
-    O aluno está tentando resolver esta etapa. A mensagem dele é:
+    **Current Task (Stage: ${currentStep}):**
+    The student is trying to solve this stage. Their message is:
     "${userMessage}"
 
-    **Sua Missão (Instruções para a IA):**
-    Com base no resumo completo acima, analise a resposta do aluno para a **Tarefa Atual**.
-    - Se a resposta para a tarefa atual estiver correta, comece com "✅ Legal!".
-    - Se estiver incompleta ou incorreta, comece com "🤔 Vamos pensar mais um pouco..." e dê uma dica construtiva sem entregar a resposta.
-    - Mantenha o foco estritamente na **Tarefa Atual do Aluno**. Não se desvie.
+    **Your Mission (Instructions for AI):**
+    Based on the complete summary above, analyze the student's response to the **Current Task**.
+    - If the answer to the current task is correct, start with "✅ Great!".
+    - If it's incomplete or incorrect, start with "🤔 Let's think a bit more..." and give a constructive hint without giving away the answer.
+    - Keep focus strictly on the **Student's Current Task**. Don't deviate.
   `;
   return context;
 }
@@ -165,7 +165,7 @@ function updateSessionContext(step, userMessage, aiResponse) {
     if (step && step.startsWith("codificacao_")) {
       if (userMessage && userMessage.trim()) sessionContext.coding.snippets.push(userMessage);
     } else if (step === "testes_depuracao") {
-      sessionContext.testing.history.push(`Aluno: ${userMessage}|IA: ${aiResponse || ""}`);
+      sessionContext.testing.history.push(`Student: ${userMessage}|AI: ${aiResponse || ""}`);
       if (sessionContext.testing.history.length > 20) {
         sessionContext.testing.history.shift();
       }
@@ -212,10 +212,10 @@ function hideTyping() {
 async function sendToAPI(message, extraContext = "") {
   showTyping();
   try {
-    let text = "Resposta simulada.";
+    let text = "Simulated response.";
     if (model) {
       const sessionBlock = buildApiContext(currentStep, message);
-      const prompt = `${contexto}\n\n${sessionBlock}\n\nContexto adicional: ${extraContext}\n\nQuestão: ${questaoAtual || sessionContext.question || '---'}\n\nAluno: ${message}`;
+      const prompt = `${contexto}\n\n${sessionBlock}\n\nAdditional context: ${extraContext}\n\nQuestion: ${questaoAtual || sessionContext.question || '---'}\n\nStudent: ${message}`;
       const result = await model.generateContent(prompt);
       if (result && result.response) {
         text = await result.response.text();
@@ -229,7 +229,7 @@ async function sendToAPI(message, extraContext = "") {
   } catch (error) {
     console.error("Erro:", error);
     hideTyping();
-    addMessage("Erro ao consultar a API.", false, true);
+    addMessage("Error consulting the API.", false, true);
   }
 }
 
@@ -246,14 +246,14 @@ async function sendMessage() {
     const numero = parseInt(message);
     if (!isNaN(numero) && numero >= 2 && numero <= 42) {
       resetSessionContext();
-      sessionContext.question = `Questão ${numero}: ${dadosPlanilha[numero - 1][0]}`;
+      sessionContext.question = `Question ${numero}: ${dadosPlanilha[numero - 1][0]}`;
       saveSessionContext();
       questaoAtual = dadosPlanilha[numero - 1][0];
       addMessage(`📚 ${sessionContext.question}`);
-      addMessage("Vamos começar pela etapa de CODIFICAÇÃO.\n\n❓ Quais são as ENTRADAS (dados de entrada) que o programa receberá?");
+      addMessage("Let's start with the CODING stage.\n\n❓ What are the INPUTS (input data) that the program will receive?");
       currentStep = "codificacao_variaveis";
     } else {
-      addMessage("Digite um número de questão válido (2 a 42).", false, true);
+      addMessage("Enter a valid question number (2 to 42).", false, true);
     }
     return;
   }
@@ -262,31 +262,31 @@ async function sendMessage() {
   
   // Variáveis
   if (currentStep === "codificacao_variaveis") {
-    const feedback = await sendToAPI(message, codificacaoInfo + "\nO aluno declarou as variáveis. Se estiver correto, pergunte sobre o processamento.");
+    const feedback = await sendToAPI(message, codificacaoInfo + "\nThe student declared the variables. If correct, ask about processing.");
     updateSessionContext("codificacao_variaveis", message, feedback);
     
     if (feedback && feedback.includes("✅")) {
       currentStep = "codificacao_processamento";
-      addMessage("⚙️ Como ficaria o PROCESSAMENTO (cálculos/lógica) do programa?");
+      addMessage("⚙️ How would the PROCESSING (calculations/logic) of the program look?");
     }
     return;
   }
 
   // Processamento
   if (currentStep === "codificacao_processamento") {
-    const feedback = await sendToAPI(message, codificacaoInfo + "\nO aluno escreveu o processamento. Se estiver correto, pergunte sobre a saída.");
+    const feedback = await sendToAPI(message, codificacaoInfo + "\nThe student wrote the processing. If correct, ask about output.");
     updateSessionContext("codificacao_processamento", message, feedback);
     
     if (feedback && feedback.includes("✅")) {
       currentStep = "codificacao_saida";
-      addMessage("📋 Como você exibiria a SAÍDA/resultado?");
+      addMessage("📋 How would you display the OUTPUT/result?");
     }
     return;
   }
 
   // Saída
   if (currentStep === "codificacao_saida") {
-    const feedback = await sendToAPI(message, codificacaoInfo + "\nO aluno sugeriu a saída. Se estiver correto, elogie e avance para testes.");
+    const feedback = await sendToAPI(message, codificacaoInfo + "\nThe student suggested the output. If correct, praise and advance to tests.");
     updateSessionContext("codificacao_saida", message, feedback);
     
     if (feedback && feedback.includes("✅")) {
@@ -294,7 +294,7 @@ async function sendMessage() {
       sessionContext.testing = sessionContext.testing || { history: [] };
       sessionContext.testing.awaitingTests = true;
       saveSessionContext();
-      addMessage("🧪 Código completo! Etapa de CODIFICAÇÃO concluída!\n\n🔍 ETAPA 4: TESTES E DEPURAÇÃO\nForneça casos de teste (formato: entrada => saída esperada).");
+      addMessage("🧪 Complete code! CODING stage completed!\n\n🔍 STAGE 4: TESTING AND DEBUGGING\nProvide test cases (format: input => expected output).");
     }
     return;
   }
@@ -304,20 +304,20 @@ async function sendMessage() {
     const cmd = message.toLowerCase().trim();
 
     // Comando explícito para finalizar a etapa e escolher um novo problema
-    if (['finalizar', 'concluir', 'menu', 'novo', 'sair'].includes(cmd)) {
-        addMessage('🎉 Parabéns! Você completou o desafio com sucesso!');
+    if (['finish', 'complete', 'menu', 'new', 'exit'].includes(cmd)) {
+        addMessage('🎉 Congratulations! You have successfully completed the challenge!');
         
         // Prepara para a próxima questão
         resetSessionContext(); 
         currentStep = null;      
         questaoAtual = "";
         
-        addMessage("🎓 Você pode escolher uma nova questão. Digite o número de 2 a 42.");
+        addMessage("🎓 You can choose a new question. Enter a number from 2 to 42.");
         return;
     }
 
     // O contexto para a IA agora é simples. O prompt principal fará o trabalho pesado.
-    const extraContext = `O aluno está na etapa de testes. A mensagem/saída dele é: "${message}"`;
+    const extraContext = `The student is in the testing stage. Their message/output is: "${message}"`;
     
     const feedback = await sendToAPI(message, extraContext);
     updateSessionContext('testes_depuracao', message, feedback);
@@ -346,7 +346,7 @@ messageInput.addEventListener('keypress', (e) => {
 async function initAPI() {
   if (!API_KEY) {
     console.warn("Nenhuma chave definida. Usando modo simulado.");
-    addMessage("⚠️ Modo simulado - configure uma API key válida", false, true);
+    addMessage("⚠️ Simulated mode - configure a valid API key", false, true);
   } else {
     try {
       const { GoogleGenerativeAI } = await import("https://esm.run/@google/generative-ai");
@@ -358,16 +358,16 @@ async function initAPI() {
       console.log("✅ API carregada com sucesso.");
     } catch (error) {
       console.error("❌ Erro ao carregar a API:", error);
-      addMessage("❌ Erro ao conectar com a API", false, true);
+      addMessage("❌ Error connecting to the API", false, true);
     }
   }
 
   try {
     dadosPlanilha = await lerCSV(URL_CSV);
-    addMessage("🎓 Bem-vindo! Digite o número da questão que você quer ajuda (2 a 42).");
+    addMessage("🎓 Welcome! Enter the question number you want help with (2 to 42).");
   } catch (error) {
     console.error("❌ Erro ao carregar questões:", error);
-    addMessage("❌ Não consegui carregar o banco de questões.", false, true);
+    addMessage("❌ Could not load the question bank.", false, true);
   }
 }
 
