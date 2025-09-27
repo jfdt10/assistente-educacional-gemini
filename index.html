@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="./chat-icon.png" type="image/png">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -22,18 +23,45 @@
             </div>
         </div>
         
+        <div class="language-selector" id="languageSelector" style="display: none;">
+            <label for="languageSelect">Linguagem:</label>
+            <select id="languageSelect">
+                <option value="">Selecione...</option>
+                <option value="python">Python</option>
+                <option value="javascript">JavaScript</option>
+                <option value="c">C</option>
+                <option value="cpp">C++</option>
+            </select>
+        </div>
+        
         <div class="chat-input">
-            <input 
-                type="text" 
-                id="messageInput" 
-                placeholder="Digite sua mensagem..."
-                maxlength="500"
-            >
-            <button class="send-btn" id="sendBtn">
-                <svg viewBox="0 0 24 24">
-                    <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"/>
-                </svg>
-            </button>
+            <div class="input-container">
+                <input 
+                    type="text" 
+                    id="messageInput" 
+                    placeholder="Digite sua mensagem..."
+                    maxlength="500"
+                >
+                <textarea 
+                    id="codeInput" 
+                    placeholder="Cole seu código aqui..."
+                    maxlength="2000"
+                    rows="4"
+                    style="display: none; resize: vertical; font-family: 'Courier New', monospace;"
+                ></textarea>
+            </div>
+            <div class="input-controls">
+                <button class="toggle-btn" id="toggleBtn" title="Alternar para código">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M8,3A2,2 0 0,0 6,5V9A2,2 0 0,1 4,11H3V13H4A2,2 0 0,1 6,15V19A2,2 0 0,0 8,21H10V19H8V14A2,2 0 0,0 6,12A2,2 0 0,0 8,10V5H10V3M16,3A2,2 0 0,1 18,5V9A2,2 0 0,0 20,11H21V13H20A2,2 0 0,0 18,15V19A2,2 0 0,1 16,21H14V19H16V14A2,2 0 0,1 18,12A2,2 0 0,1 16,10V5H14V3"/>
+                    </svg>
+                </button>
+                <button class="send-btn" id="sendBtn">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"/>
+                    </svg>
+                </button>
+            </div>
         </div>
     </div>
 
@@ -43,7 +71,6 @@
         </svg>
     </button>
 
-    <!--
     <script type="importmap">
         {
           "imports": {
@@ -51,7 +78,7 @@
           }
         }
     </script>
-    -->
+
 
     <script type="module" src="main.js"></script>
 

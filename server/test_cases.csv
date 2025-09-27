@@ -1,0 +1,26 @@
+questao_id,entrada,saida,tipo
+1,"100\n200","13954",padrao
+2,"4","24",padrao
+3,"3\n8 0 7","2",padrao
+4,"3\nspock spock\ntesoura spock\nlagarto spock","empate\nsheldon\nrajesh",padrao
+2,3,6,gerado
+2,5,120,gerado
+2,1,1,gerado
+2,6,720,gerado
+2,10,3628800,gerado
+1,"1
+5",15,gerado
+1,"10
+20",152,gerado
+1,"20
+10",152,gerado
+1,"15
+15",15,gerado
+1,"13
+13",0,gerado
+1,"-20
+-10",-152,gerado
+1,"-5
+5",0,gerado
+1,"1
+30",426,gerado
