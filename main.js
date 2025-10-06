@@ -1,5 +1,5 @@
 // ---------------------- Configuração Inicial ----------------------
-const API_KEY = "AIzaSyCAdvgy9b0M-5QdBk6RRUAtInNBkIiWcpI";
+const API_KEY = "";
 
 let model = null;
 let dadosPlanilha = [];
