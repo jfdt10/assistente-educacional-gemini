@@ -11,7 +11,7 @@ Este documento é o guia central para o Assistente Educacional Gemini, um sistem
 
 **Principais Funcionalidades:**
 - **Frontend Interativo:** Interface de chat para interação com o usuário.
-- **Backend com Judge:** API REST em Node.js que utiliza o Judge0 para executar código em um ambiente seguro.
+- **Backend com Judge:** API REST em Node.js que utiliza o Judge para executar código local.
 - **Tutoria com IA:** O Gemini guia os estudantes através de um fluxo pedagógico, desde a compreensão do problema até a depuração do código.
 - **Validação e Segurança:** Múltiplas camadas de validação para garantir a integridade e a segurança dos dados.
 - **Feedback Visual:** Componentes visuais que mostram o progresso da execução dos testes em tempo real.
@@ -24,7 +24,6 @@ Siga estes passos para configurar e executar o ambiente de desenvolvimento local
 
 ### 2.1. Pré-requisitos
 - **Node.js:** Versão 14 ou superior.
-- **Docker:** Necessário para executar o ambiente de avaliação de código Judge0.
 
 Verifique as instalações:
 ```bash
@@ -39,15 +38,9 @@ cd server
 npm install
 ```
 
-### 2.3. Inicialização do Judge0
-Use o Docker para baixar e executar a imagem mais recente do Judge0. O comando mapeia a porta `2358`, que a API usará para submeter o código.
-```bash
-docker run -d -p 2358:2358 --name judge0 judge0/judge0:latest
-```
-> **Dica:** Para reiniciar um container parado, use `docker start judge0`.
 
 ### 2.4. Inicialização do Backend
-Com o Judge0 rodando, inicie o servidor da aplicação.
+Com o Judge rodando, inicie o servidor da aplicação.
 ```bash
 cd server
 node server.js
@@ -88,7 +81,7 @@ jfdt10-fork/
 │
 └── server/
     ├── server.js           # API REST principal (endpoints)
-    ├── judge.js            # Lógica de execução de código (Judge0)
+    ├── judge.js            # Lógica de execução de código (Judge feito rodando máquina pessoal)
     ├── validator.js        # Validação de dados de entrada
     ├── outputComparator.js # Comparação de saídas (esperada vs. real)
     ├── reportGenerator.js  # Geração de relatórios de submissão
@@ -142,7 +135,7 @@ A API REST é o cérebro do sistema, responsável por gerenciar questões, casos
 
 ### `POST /execute`
 - **Descrição:** Executa um único trecho de código com uma entrada específica.
-- **Validações:** `code` não pode ser vazio (máx 50KB); `language` deve ser suportada (`python`, `javascript`, `c`, `cpp`, `java`).
+- **Validações:** `code` não pode ser vazio (máx 50KB); `language` deve ser suportada (`python`, `javascript`, `c`, `cpp`).
 - **Body:**
   ```json
   {
@@ -199,7 +192,7 @@ Esta seção documenta as principais otimizações e correções de bugs impleme
 ### 5.1. Melhorias de Robustez (Judge e Validação)
 - **Normalização de Saídas:** O `outputComparator.js` agora normaliza quebras de linha (`CRLF` vs. `LF`) e espaços em branco antes de comparar as saídas, evitando falsos negativos.
 - **Tratamento de Caracteres de Escape:** O `judge.js` converte sequências de escape (ex: `"100\\n200"`) para seus caracteres reais (ex: `"100\n200"`), corrigindo `ValueErrors` em códigos Python.
-- **Validação Pré-execução:** Código vazio ou que excede o limite de tamanho é rejeitado antes de ser enviado ao Judge0, economizando recursos.
+- **Validação Pré-execução:** Código vazio ou que excede o limite de tamanho é rejeitado antes de ser enviado ao judge, economizando recursos.
 
 | Aspecto | Antes | Depois |
 |---|---|---|
@@ -227,8 +220,7 @@ Esta seção documenta as principais otimizações e correções de bugs impleme
   1. Verifique se o backend está rodando (`node server/server.js`).
   2. Teste a saúde da API com `curl http://localhost:3001/health`.
 - **Erros de execução de código (ex: "No such file or directory")**:
-  1. Verifique se o container do Judge0 está em execução (`docker ps`).
-  2. Reinicie o container: `docker restart judge0`.
+  1. Verifique se não há arquivos faltantes.
 - **O fluxo do chat parece "preso" ou inconsistente**:
   1. Limpe o cache do navegador e o `sessionStorage`. Atalho: `Ctrl+Shift+R`.
   2. Abra o console do desenvolvedor (F12) e verifique se há erros ou logs de `stateManager`.
