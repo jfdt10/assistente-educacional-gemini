@@ -1,0 +1,71 @@
+{
+  "submissionId": "batch_1760387969533",
+  "timestamp": "2025-10-13T20:39:29.533Z",
+  "language": "python",
+  "code": "N = int(input())\nT = list(map(int, input().split()))\n\nx = 10 / 0\n\nprint(T.index(min(T)) + 1)",
+  "testCases": [
+    {
+      "entrada": "3\n8 0 7",
+      "saida": "2"
+    },
+    {
+      "entrada": "2\n1 1",
+      "saida": "1"
+    },
+    {
+      "entrada": "4\n5 2 9 1",
+      "saida": "4"
+    },
+    {
+      "entrada": "5\n10 3 15 7 20",
+      "saida": "2"
+    },
+    {
+      "entrada": "1\n100",
+      "saida": "1"
+    },
+    {
+      "entrada": "3\n5 5 5",
+      "saida": "1"
+    },
+    {
+      "entrada": "4\n0 8 2 7",
+      "saida": "1"
+    },
+    {
+      "entrada": "5\n5 2 8 2 1",
+      "saida": "5"
+    },
+    {
+      "entrada": "6\n10 5 20 5 30 5",
+      "saida": "2"
+    },
+    {
+      "entrada": "7\n100 20 50 10 30 60 70",
+      "saida": "4"
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "executionTime": 181.479,
+    "memoryUsage": 11.395973205566406
+  },
+  "results": [
+    {
+      "caseId": "case_1",
+      "status": "Runtime Error",
+      "verdict": "Runtime Error",
+      "input": "3\n8 0 7",
+      "expected": "2",
+      "actual": "",
+      "error": "Traceback (most recent call last):\r\n  File \"C:\\Users\\Jean\\AppData\\Local\\Temp\\judge-cQ21WO\\script.py\", line 4, in <module>\r\n    x = 10 / 0\r\n        ~~~^~~\r\nZeroDivisionError: division by zero\r\n",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 181.479,
+      "memoryUsage": 11.395973205566406,
+      "timestamp": "2025-10-13T20:39:29.533Z"
+    }
+  ]
+}

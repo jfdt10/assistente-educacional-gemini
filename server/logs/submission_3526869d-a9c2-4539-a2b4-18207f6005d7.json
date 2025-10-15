@@ -1,0 +1,32 @@
+{
+  "submissionId": "3526869d-a9c2-4539-a2b4-18207f6005d7",
+  "timestamp": "2025-10-06T22:38:40.994Z",
+  "questionId": "lista_encadeada_avancada",
+  "language": "c",
+  "code": "#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n#include <locale.h>\n\n// Estrutura de um n� da lista\ntypedef struct Node {\n    int id;\n    char nome[50];\n    float salario;\n    struct Node* proximo;\n} Funcionario;\n\n// Adiciona um novo funcion�rio na lista\nvoid adicionarFuncionario(Funcionario** cabeca, int id, const char* nome, float salario) {\n    Funcionario* novo = (Funcionario*)malloc(sizeof(Funcionario));\n    novo->id = id;\n    strcpy(novo->nome, nome);\n    novo->salario = salario;\n    novo->proximo = *cabeca;\n    *cabeca = novo;\n}\n\n// Ordena a lista por sal�rio (decrescente)\nvoid ordenarPorSalario(Funcionario** cabeca) {\n    if (*cabeca == NULL || (*cabeca)->proximo == NULL) return;\n    \n    int trocou;\n    Funcionario* atual;\n    Funcionario* proximo = NULL;\n    \n    do {\n        trocou = 0;\n        atual = *cabeca;\n        \n        while (atual->proximo != proximo) {\n            if (atual->salario < atual->proximo->salario) {\n                // Troca os dados\n                int tempId = atual->id;\n                atual->id = atual->proximo->id;\n                atual->proximo->id = tempId;\n                \n                char tempNome[50];\n                strcpy(tempNome, atual->nome);\n                strcpy(atual->nome, atual->proximo->nome);\n                strcpy(atual->proximo->nome, tempNome);\n                \n                float tempSalario = atual->salario;\n                atual->salario = atual->proximo->salario;\n                atual->proximo->salario = tempSalario;\n                \n                trocou = 1;\n            }\n            atual = atual->proximo;\n        }\n        proximo = atual;\n    } while (trocou);\n}\n\n// Busca um funcion�rio pelo ID\nFuncionario* buscarPorId(Funcionario* cabeca, int id) {\n    while (cabeca != NULL) {\n        if (cabeca->id == id) {\n            return cabeca;\n        }\n        cabeca = cabeca->proximo;\n    }\n    return NULL;\n}\n\n// Fun��o principal\nint main() {\n    // Configura o locale para usar ponto como separador decimal\n    setlocale(LC_NUMERIC, \"C\");\n    \n    Funcionario* lista = NULL;\n    \n    // Adiciona funcion�rios\n    adicionarFuncionario(&lista, 1, \"Joao Silva\", 3500.50);\n    adicionarFuncionario(&lista, 2, \"Maria Santos\", 4200.75);\n    adicionarFuncionario(&lista, 3, \"Carlos Oliveira\", 3800.25);\n    \n    // Ordena por sal�rio\n    ordenarPorSalario(&lista);\n    \n    // Imprime a lista ordenada\n    printf(\"Lista de Funcionarios (ordenada por salario):\\n\");\n    Funcionario* atual = lista;\n    while (atual != NULL) {\n        printf(\"ID: %d, Nome: %s, Salario: R$ %.2f\\n\", \n               atual->id, atual->nome, atual->salario);\n        atual = atual->proximo;\n    }\n    \n    // Busca um funcion�rio\n    int idBusca = 2;\n    Funcionario* encontrado = buscarPorId(lista, idBusca);\n    if (encontrado != NULL) {\n        printf(\"\\nFuncionario encontrado: %s (Salario: R$ %.2f)\\n\", \n               encontrado->nome, encontrado->salario);\n    } else {\n        printf(\"\\nFuncionario com ID %d nao encontrado.\\n\", idBusca);\n    }\n    \n    // Libera a mem�ria\n    while (lista != NULL) {\n        Funcionario* temp = lista;\n        lista = lista->proximo;\n        free(temp);\n    }\n    \n    return 0;\n}",
+  "testCases": [
+    {
+      "entrada": "",
+      "tipo": "padrao",
+      "saida": "Lista de Funcionarios (ordenada por salario):\nID: 2, Nome: Maria Santos, Salario: R$ 4200.75\nID: 3, Nome: Carlos Oliveira, Salario: R$ 3800.25\nID: 1, Nome: Joao Silva, Salario: R$ 3500.50\n\nFuncionario encontrado: Maria Santos (Salario: R$ 4200.75)\n"
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "executionTime": 291.2488,
+    "memoryUsage": 10.558052062988281
+  },
+  "results": [
+    {
+      "caseId": "case_1",
+      "status": "Success",
+      "input": "",
+      "expected": "Lista de Funcionarios (ordenada por salario):\nID: 2, Nome: Maria Santos, Salario: R$ 4200.75\nID: 3, Nome: Carlos Oliveira, Salario: R$ 3800.25\nID: 1, Nome: Joao Silva, Salario: R$ 3500.50\n\nFuncionario encontrado: Maria Santos (Salario: R$ 4200.75)\n",
+      "actual": "Lista de Funcionarios (ordenada por salario):\r\nID: 2, Nome: Maria Santos, Salario: R$ 4200.75\r\nID: 3, Nome: Carlos Oliveira, Salario: R$ 3800.25\r\nID: 1, Nome: Joao Silva, Salario: R$ 3500.50\r\n\r\nFuncionario encontrado: Maria Santos (Salario: R$ 4200.75)\r\n",
+      "executionTime": 291.2488,
+      "memoryUsage": 10.558052062988281
+    }
+  ]
+}

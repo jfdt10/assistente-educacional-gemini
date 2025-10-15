@@ -1,0 +1,71 @@
+{
+  "submissionId": "batch_1760387440445",
+  "timestamp": "2025-10-13T20:30:40.445Z",
+  "language": "python",
+  "code": "T = int(input(\"Digite o número de casos de teste: \"))\n\nif T >= 1 and T <= 100:\n    for c in range(1, T+1):\n        escolha_sheldon, escolha_raj = map(str,input().split())\n        \n        if escolha_sheldon == escolha_raj:\n            print(\"Caso #{}: De novo!\" .format(c))\n        elif (escolha_sheldon == \"tesoura\" and (escolha_raj == \"papel\" or escolha_raj == \"lagarto\")) or \\\n        (escolha_sheldon == \"papel\" and (escolha_raj == \"pedra\" or escolha_raj == \"Spock\")) or \\\n        (escolha_sheldon == \"pedra\" and (escolha_raj == \"lagarto\" or escolha_raj == \"tesoura\")) or \\\n        (escolha_sheldon == \"lagarto\" and (escolha_raj == \"Spock\" or escolha_raj == \"papel\")) or \\\n        (escolha_sheldon == \"Spock\" and (escolha_raj == \"tesoura\" or escolha_raj == \"pedra\")):\n            print(\"Caso #{}: Bazinga!\" .format(c)\n        else:\n            print(\"Caso #{}: Raj trapaceou!\" .format(c))",
+  "testCases": [
+    {
+      "entrada": "3\n8 0 7",
+      "saida": "2"
+    },
+    {
+      "entrada": "2\n1 1",
+      "saida": "1"
+    },
+    {
+      "entrada": "4\n5 2 9 1",
+      "saida": "4"
+    },
+    {
+      "entrada": "5\n10 3 15 7 20",
+      "saida": "2"
+    },
+    {
+      "entrada": "1\n100",
+      "saida": "1"
+    },
+    {
+      "entrada": "3\n5 5 5",
+      "saida": "1"
+    },
+    {
+      "entrada": "4\n0 8 2 7",
+      "saida": "1"
+    },
+    {
+      "entrada": "5\n5 2 8 2 1",
+      "saida": "5"
+    },
+    {
+      "entrada": "6\n10 5 20 5 30 5",
+      "saida": "2"
+    },
+    {
+      "entrada": "7\n100 20 50 10 30 60 70",
+      "saida": "4"
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "executionTime": 191.5571,
+    "memoryUsage": 10.381401062011719
+  },
+  "results": [
+    {
+      "caseId": "case_1",
+      "status": "Runtime Error",
+      "verdict": "Runtime Error",
+      "input": "3\n8 0 7",
+      "expected": "2",
+      "actual": "",
+      "error": "  File \"C:\\Users\\Jean\\AppData\\Local\\Temp\\judge-ceHuNL\\script.py\", line 14\r\n    print(\"Caso #{}: Bazinga!\" .format(c)\r\n         ^\r\nSyntaxError: '(' was never closed\r\n",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 191.5571,
+      "memoryUsage": 10.381401062011719,
+      "timestamp": "2025-10-13T20:30:40.445Z"
+    }
+  ]
+}

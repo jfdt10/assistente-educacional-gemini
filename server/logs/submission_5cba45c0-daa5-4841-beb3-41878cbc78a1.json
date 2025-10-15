@@ -1,0 +1,32 @@
+{
+  "submissionId": "5cba45c0-daa5-4841-beb3-41878cbc78a1",
+  "timestamp": "2025-10-06T22:00:58.252Z",
+  "questionId": "hello_c",
+  "language": "c",
+  "code": "#include <stdio.h>\nint main() {\n    printf(\"Hello, World!\");\n    return 0;\n}",
+  "testCases": [
+    {
+      "entrada": "",
+      "tipo": "padrao",
+      "saida": "Hello, World!"
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "executionTime": 1758.3884,
+    "memoryUsage": 10.306205749511719
+  },
+  "results": [
+    {
+      "caseId": "case_1",
+      "status": "Success",
+      "input": "",
+      "expected": "Hello, World!",
+      "actual": "Hello, World!",
+      "executionTime": 1758.3884,
+      "memoryUsage": 10.306205749511719
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "submissionId": "57eaf33e-b047-4d7d-b5f4-3632804da801",
+  "timestamp": "2025-10-06T21:30:42.255Z",
+  "questionId": "teste_simples",
+  "language": "python",
+  "code": "print('Hello, World!')",
+  "testCases": [
+    {
+      "entrada": "",
+      "saida": "Hello, World!",
+      "tipo": "padrao"
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "executionTime": 4.2177,
+    "memoryUsage": 9.601829528808594
+  },
+  "results": [
+    {
+      "caseId": "case_1",
+      "status": "Runtime Error",
+      "input": "",
+      "expected": "Hello, World!",
+      "actual": "",
+      "executionTime": 4.2177,
+      "memoryUsage": 9.601829528808594
+    }
+  ]
+}

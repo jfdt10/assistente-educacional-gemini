@@ -1,0 +1,161 @@
+{
+  "submissionId": "batch_1760387355563",
+  "timestamp": "2025-10-13T20:29:15.563Z",
+  "language": "python",
+  "code": "def vence(rajesh, sheldon):\n    regras = {\n        'tesoura': ['papel', 'lagarto'],\n        'papel': ['pedra', 'spock'],\n        'pedra': ['lagarto', 'tesoura'],\n        'lagarto': ['spock', 'papel'],\n        'spock': ['tesoura', 'pedra']\n    }\n    if rajesh == sheldon:\n        return \"empate\"\n    elif sheldon in regras[rajesh]:\n        return \"rajesh\"\n    else:\n        return \"sheldon\"\nC = int(input())\nfor _ in range(C):\n    rajesh, sheldon = input().split()\n    resultado = vence(rajesh, sheldon)\n    print(resultado)",
+  "testCases": [
+    {
+      "entrada": "3\nspock spock\ntesoura spock\nlagarto spock",
+      "saida": "empate\\nsheldon\\nrajesh"
+    },
+    {
+      "entrada": "1\ntesoura papel",
+      "saida": "rajesh"
+    },
+    {
+      "entrada": "1\nlagarto pedra",
+      "saida": "sheldon"
+    },
+    {
+      "entrada": "1\npedra pedra",
+      "saida": "empate"
+    },
+    {
+      "entrada": "1\nspock tesoura",
+      "saida": "rajesh"
+    },
+    {
+      "entrada": "1\nspock papel",
+      "saida": "sheldon"
+    },
+    {
+      "entrada": "1\ntesoura lagarto",
+      "saida": "rajesh"
+    },
+    {
+      "entrada": "1\npapel lagarto",
+      "saida": "sheldon"
+    }
+  ],
+  "summary": {
+    "total": 8,
+    "passed": 8,
+    "failed": 0,
+    "executionTime": 1400.0209,
+    "memoryUsage": 10.55194091796875
+  },
+  "results": [
+    {
+      "caseId": "case_1",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "3\nspock spock\ntesoura spock\nlagarto spock",
+      "expected": "empate\nsheldon\nrajesh",
+      "actual": "empate\nsheldon\nrajesh",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 232.8755,
+      "memoryUsage": 10.016624450683594,
+      "timestamp": "2025-10-13T20:29:15.563Z"
+    },
+    {
+      "caseId": "case_2",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "1\ntesoura papel",
+      "expected": "rajesh",
+      "actual": "rajesh",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 170.0264,
+      "memoryUsage": 9.845481872558594,
+      "timestamp": "2025-10-13T20:29:15.563Z"
+    },
+    {
+      "caseId": "case_3",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "1\nlagarto pedra",
+      "expected": "sheldon",
+      "actual": "sheldon",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 162.8337,
+      "memoryUsage": 10.133636474609375,
+      "timestamp": "2025-10-13T20:29:15.563Z"
+    },
+    {
+      "caseId": "case_4",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "1\npedra pedra",
+      "expected": "empate",
+      "actual": "empate",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 172.0743,
+      "memoryUsage": 10.41009521484375,
+      "timestamp": "2025-10-13T20:29:15.563Z"
+    },
+    {
+      "caseId": "case_5",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "1\nspock tesoura",
+      "expected": "rajesh",
+      "actual": "rajesh",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 170.5154,
+      "memoryUsage": 10.035446166992188,
+      "timestamp": "2025-10-13T20:29:15.563Z"
+    },
+    {
+      "caseId": "case_6",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "1\nspock papel",
+      "expected": "sheldon",
+      "actual": "sheldon",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 160.3194,
+      "memoryUsage": 10.291046142578125,
+      "timestamp": "2025-10-13T20:29:15.563Z"
+    },
+    {
+      "caseId": "case_7",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "1\ntesoura lagarto",
+      "expected": "rajesh",
+      "actual": "rajesh",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 166.4811,
+      "memoryUsage": 10.55194091796875,
+      "timestamp": "2025-10-13T20:29:15.563Z"
+    },
+    {
+      "caseId": "case_8",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "1\npapel lagarto",
+      "expected": "sheldon",
+      "actual": "sheldon",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 164.8951,
+      "memoryUsage": 10.114776611328125,
+      "timestamp": "2025-10-13T20:29:15.563Z"
+    }
+  ]
+}

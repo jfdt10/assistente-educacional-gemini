@@ -1,0 +1,719 @@
+{
+  "submissionId": "batch_1760392483572",
+  "timestamp": "2025-10-13T21:54:43.572Z",
+  "language": "python",
+  "code": "X = int(input())\nY = int(input())\n\nif X > Y:\n    X, Y = Y, X\n    \nsoma = 0\nfor c in range(X, Y+1):\n    if c % 13 != 0:\n        soma += c\nprint(soma)",
+  "testCases": [
+    {
+      "entrada": "100\n200",
+      "saida": "13954"
+    },
+    {
+      "entrada": "1\n10",
+      "saida": "55"
+    },
+    {
+      "entrada": "20\n1",
+      "saida": "197"
+    },
+    {
+      "entrada": "5\n5",
+      "saida": "5"
+    },
+    {
+      "entrada": "13\n13",
+      "saida": "0"
+    },
+    {
+      "entrada": "-5\n5",
+      "saida": "0"
+    },
+    {
+      "entrada": "-10\n15",
+      "saida": "52"
+    },
+    {
+      "entrada": "1000\n1050",
+      "saida": "48193"
+    },
+    {
+      "entrada": "1\n10",
+      "saida": "55"
+    },
+    {
+      "entrada": "20\n10",
+      "saida": "152"
+    },
+    {
+      "entrada": "13\n26",
+      "saida": "234"
+    },
+    {
+      "entrada": "-5\n5",
+      "saida": "0"
+    },
+    {
+      "entrada": "-30\n-1",
+      "saida": "-426"
+    },
+    {
+      "entrada": "1\n12",
+      "saida": "78"
+    },
+    {
+      "entrada": "10\n10",
+      "saida": "10"
+    },
+    {
+      "entrada": "13\n13",
+      "saida": "0"
+    },
+    {
+      "entrada": "1\n10",
+      "saida": "55"
+    },
+    {
+      "entrada": "10\n20",
+      "saida": "152"
+    },
+    {
+      "entrada": "10\n10",
+      "saida": "10"
+    },
+    {
+      "entrada": "20\n10",
+      "saida": "152"
+    },
+    {
+      "entrada": "0\n20",
+      "saida": "197"
+    },
+    {
+      "entrada": "-20\n-1",
+      "saida": "-197"
+    },
+    {
+      "entrada": "13\n39",
+      "saida": "624"
+    },
+    {
+      "entrada": "1\n10",
+      "saida": "55"
+    },
+    {
+      "entrada": "10\n20",
+      "saida": "152"
+    },
+    {
+      "entrada": "20\n10",
+      "saida": "152"
+    },
+    {
+      "entrada": "10\n10",
+      "saida": "10"
+    },
+    {
+      "entrada": "-20\n-10",
+      "saida": "-152"
+    },
+    {
+      "entrada": "-15\n15",
+      "saida": "0"
+    },
+    {
+      "entrada": "1\n26",
+      "saida": "312"
+    },
+    {
+      "entrada": "14\n25",
+      "saida": "234"
+    },
+    {
+      "entrada": "1\n5",
+      "saida": "15"
+    },
+    {
+      "entrada": "1\n20",
+      "saida": "197"
+    },
+    {
+      "entrada": "20\n1",
+      "saida": "197"
+    },
+    {
+      "entrada": "-5\n5",
+      "saida": "0"
+    },
+    {
+      "entrada": "-20\n-1",
+      "saida": "-197"
+    },
+    {
+      "entrada": "12\n14",
+      "saida": "26"
+    },
+    {
+      "entrada": "13\n13",
+      "saida": "0"
+    },
+    {
+      "entrada": "1\n100",
+      "saida": "4686"
+    }
+  ],
+  "summary": {
+    "total": 39,
+    "passed": 39,
+    "failed": 0,
+    "executionTime": 7894.390799999999,
+    "memoryUsage": 11.984504699707031
+  },
+  "results": [
+    {
+      "caseId": "case_1",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "100\n200",
+      "expected": "13954",
+      "actual": "13954",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 273.9887,
+      "memoryUsage": 11.113754272460938,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_2",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "1\n10",
+      "expected": "55",
+      "actual": "55",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 229.6539,
+      "memoryUsage": 11.36065673828125,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_3",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "20\n1",
+      "expected": "197",
+      "actual": "197",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 248.5395,
+      "memoryUsage": 10.915542602539062,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_4",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "5\n5",
+      "expected": "5",
+      "actual": "5",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 251.8946,
+      "memoryUsage": 11.159500122070312,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_5",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "13\n13",
+      "expected": "0",
+      "actual": "0",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 255.1088,
+      "memoryUsage": 11.404830932617188,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_6",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "-5\n5",
+      "expected": "0",
+      "actual": "0",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 252.2315,
+      "memoryUsage": 10.975448608398438,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_7",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "-10\n15",
+      "expected": "52",
+      "actual": "52",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 232.5549,
+      "memoryUsage": 11.223976135253906,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_8",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "1000\n1050",
+      "expected": "48193",
+      "actual": "48193",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 213.3417,
+      "memoryUsage": 11.468009948730469,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_9",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "1\n10",
+      "expected": "55",
+      "actual": "55",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 193.9214,
+      "memoryUsage": 11.040023803710938,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_10",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "20\n10",
+      "expected": "152",
+      "actual": "152",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 204.1719,
+      "memoryUsage": 11.272727966308594,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_11",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "13\n26",
+      "expected": "234",
+      "actual": "234",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 202.1431,
+      "memoryUsage": 11.506202697753906,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_12",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "-5\n5",
+      "expected": "0",
+      "actual": "0",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 199.4443,
+      "memoryUsage": 11.077468872070312,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_13",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "-30\n-1",
+      "expected": "-426",
+      "actual": "-426",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 191.9977,
+      "memoryUsage": 11.311790466308594,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_14",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "1\n12",
+      "expected": "78",
+      "actual": "78",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 192.1757,
+      "memoryUsage": 11.544479370117188,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_15",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "10\n10",
+      "expected": "10",
+      "actual": "10",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 193.5337,
+      "memoryUsage": 11.071937561035156,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_16",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "13\n13",
+      "expected": "0",
+      "actual": "0",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 182.5492,
+      "memoryUsage": 11.303359985351562,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_17",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "1\n10",
+      "expected": "55",
+      "actual": "55",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 192.8421,
+      "memoryUsage": 11.535102844238281,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_18",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "10\n20",
+      "expected": "152",
+      "actual": "152",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 182.6561,
+      "memoryUsage": 11.060142517089844,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_19",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "10\n10",
+      "expected": "10",
+      "actual": "10",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 184.5905,
+      "memoryUsage": 11.295845031738281,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_20",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "20\n10",
+      "expected": "152",
+      "actual": "152",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 184.6609,
+      "memoryUsage": 11.528373718261719,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_21",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "0\n20",
+      "expected": "197",
+      "actual": "197",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 190.7736,
+      "memoryUsage": 11.108375549316406,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_22",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "-20\n-1",
+      "expected": "-197",
+      "actual": "-197",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 197.5965,
+      "memoryUsage": 11.3408203125,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_23",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "13\n39",
+      "expected": "624",
+      "actual": "624",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 190.6863,
+      "memoryUsage": 11.570899963378906,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_24",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "1\n10",
+      "expected": "55",
+      "actual": "55",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 193.5379,
+      "memoryUsage": 11.803543090820312,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_25",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "10\n20",
+      "expected": "152",
+      "actual": "152",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 194.602,
+      "memoryUsage": 11.318611145019531,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_26",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "20\n10",
+      "expected": "152",
+      "actual": "152",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 191.8847,
+      "memoryUsage": 11.550262451171875,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_27",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "10\n10",
+      "expected": "10",
+      "actual": "10",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 194.7592,
+      "memoryUsage": 11.777565002441406,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_28",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "-20\n-10",
+      "expected": "-152",
+      "actual": "-152",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 186.8342,
+      "memoryUsage": 11.318763732910156,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_29",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "-15\n15",
+      "expected": "0",
+      "actual": "0",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 189.3451,
+      "memoryUsage": 11.544792175292969,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_30",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "1\n26",
+      "expected": "312",
+      "actual": "312",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 184.7737,
+      "memoryUsage": 11.768562316894531,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_31",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "14\n25",
+      "expected": "234",
+      "actual": "234",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 189.9588,
+      "memoryUsage": 11.30743408203125,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_32",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "1\n5",
+      "expected": "15",
+      "actual": "15",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 191.1044,
+      "memoryUsage": 11.535934448242188,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_33",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "1\n20",
+      "expected": "197",
+      "actual": "197",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 185.2153,
+      "memoryUsage": 11.759513854980469,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_34",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "20\n1",
+      "expected": "197",
+      "actual": "197",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 208.2814,
+      "memoryUsage": 11.984504699707031,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_35",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "-5\n5",
+      "expected": "0",
+      "actual": "0",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 188.7114,
+      "memoryUsage": 11.499244689941406,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_36",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "-20\n-1",
+      "expected": "-197",
+      "actual": "-197",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 190.458,
+      "memoryUsage": 11.723007202148438,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_37",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "12\n14",
+      "expected": "26",
+      "actual": "26",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 184.2991,
+      "memoryUsage": 11.946968078613281,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_38",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "13\n13",
+      "expected": "0",
+      "actual": "0",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 190.9663,
+      "memoryUsage": 11.488090515136719,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    },
+    {
+      "caseId": "case_39",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "1\n100",
+      "expected": "4686",
+      "actual": "4686",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 188.6027,
+      "memoryUsage": 11.711631774902344,
+      "timestamp": "2025-10-13T21:54:43.572Z"
+    }
+  ]
+}

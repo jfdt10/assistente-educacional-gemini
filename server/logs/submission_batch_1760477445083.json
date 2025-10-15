@@ -1,0 +1,87 @@
+{
+  "submissionId": "batch_1760477445083",
+  "timestamp": "2025-10-14T21:30:45.083Z",
+  "language": "python",
+  "code": "n = int(input())\nresultadoFatorial = 0\nif 0 < n < 13:\n    resultadoFatorial = 1\n\nwhile n > 1:\n    resultadoFatorial *= n\n    n -= 1\n    \nprint(resultadoFatorial)",
+  "testCases": [
+    {
+      "entrada": "4",
+      "saida": "24"
+    },
+    {
+      "entrada": "0",
+      "saida": "1"
+    },
+    {
+      "entrada": "1",
+      "saida": "1"
+    },
+    {
+      "entrada": "2",
+      "saida": "2"
+    },
+    {
+      "entrada": "3",
+      "saida": "6"
+    },
+    {
+      "entrada": "5",
+      "saida": "120"
+    },
+    {
+      "entrada": "7",
+      "saida": "5040"
+    },
+    {
+      "entrada": "11",
+      "saida": "39916800"
+    },
+    {
+      "entrada": "12",
+      "saida": "479001600"
+    }
+  ],
+  "summary": {
+    "total": 2,
+    "passed": 1,
+    "failed": 1,
+    "executionTime": 408.4339,
+    "memoryUsage": 11.463676452636719
+  },
+  "results": [
+    {
+      "caseId": "case_1",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "4",
+      "expected": "24",
+      "actual": "24",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 223.0162,
+      "memoryUsage": 11.463676452636719,
+      "timestamp": "2025-10-14T21:30:45.083Z"
+    },
+    {
+      "caseId": "case_2",
+      "status": "Success",
+      "verdict": "Wrong Answer",
+      "input": "0",
+      "expected": "1",
+      "actual": "0",
+      "error": "",
+      "errorType": "numeric_value",
+      "diff": [
+        {
+          "position": 0,
+          "expected": "1",
+          "actual": "0"
+        }
+      ],
+      "executionTime": 185.4177,
+      "memoryUsage": 11.009033203125,
+      "timestamp": "2025-10-14T21:30:45.083Z"
+    }
+  ]
+}

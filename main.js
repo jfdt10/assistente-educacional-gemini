@@ -1,18 +1,34 @@
 // ---------------------- Configuração Inicial ----------------------
 const API_KEY = "";
 
+import { errorHandler } from './errorHandler.js';
+import { feedbackVisual } from './feedbackVisual.js';
+import { STATES, StateManager } from './stateManager.js';
+
+// Inicializa o feedback visual
+feedbackVisual.init();
+
 let model = null;
 let dadosPlanilha = [];
 let casosDeTestePorQuestao = {};
+const stateManager = new StateManager();
+
+// Helper: converte sequências escapadas em quebras de linha reais
+function unescapeInput(str) {
+  if (typeof str !== 'string') return str;
+  if (str.indexOf('\\n') === -1 && str.indexOf('\\r') === -1 && str.indexOf('\\t') === -1) return str;
+  return str.replace(/\\r\\n/g, '\\r\\n').replace(/\\n/g, '\n').replace(/\\r/g, '\r').replace(/\\t/g, '\t');
+}
 
 async function carregarCasosTeste() {
   console.log("Tentando carregar casos de teste do backend...");
   try {
-    const resp = await fetch('http://localhost:3001/cases');
-    if (!resp.ok) {
-      throw new Error(`O servidor respondeu com status ${resp.status}`);
-    }
-    const lista = await resp.json();
+    const lista = await errorHandler.safeFetch(
+      'http://localhost:3001/cases',
+      {},
+      'Carregando casos de teste'
+    );
+    
     const map = {};
     lista.forEach(c => {
       const qid = String(c.questao_id);
@@ -23,11 +39,12 @@ async function carregarCasosTeste() {
         tipo: c.tipo || 'gerado'
       });
     });
-    console.log("Casos de teste carregados com sucesso do backend!");
+    console.log("✅ Casos de teste carregados com sucesso!");
     return map;
   } catch (e) {
-    console.error('❌ Falha ao carregar casos de teste do backend:', e);
-    addMessage("❌ Erro: Não foi possível conectar ao servidor de casos de teste. Verifique se ele está rodando.", false, true);
+    errorHandler.logError(e, { function: 'carregarCasosTeste' });
+    const mensagem = errorHandler.getUserFriendlyMessage(e);
+    addMessage(`${mensagem} Verifique se o servidor está rodando.`, false, true);
     return {};
   }
 }
@@ -37,36 +54,33 @@ async function salvarCasosGeradosBackend(questaoId, casosGerados) {
     const payload = {
       casos: (casosGerados || []).map(c => ({
         questao_id: String(questaoId),
-        entrada: String(c.entrada || ''),
+        entrada: String(unescapeInput(c.entrada || '')),
         saida: String(c.saida || ''),
         tipo: c.tipo || 'gerado'
       }))
     };
+    
     if (!payload.casos.length) {
       console.log("Nenhum caso novo para salvar.");
       return false;
     }
-    const resp = await fetch('http://localhost:3001/cases', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-    if (!resp.ok) {
-      let errorMsg = `Falha ao salvar (${resp.status})`;
-      try {
-        const errorData = await resp.json();
-        errorMsg += `: ${errorData.error || 'Erro desconhecido no servidor'}`;
-      } catch {
-        errorMsg += `: ${resp.statusText}`;
-      }
-      throw new Error(errorMsg);
-    }
-    const data = await resp.json();
-    console.log('Casos salvos com sucesso no backend:', data);
+    
+    const resultado = await errorHandler.safeFetch(
+      'http://localhost:3001/cases',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      },
+      'Salvando casos de teste'
+    );
+    
+    console.log("✅ Casos salvos com sucesso!", resultado);
     return true;
-  } catch (e) {
-    console.error('Erro ao salvar casos no backend:', e.message);
-    addMessage(`❌ Erro ao salvar casos permanentemente: ${e.message}`, false, true);
+  } catch (error) {
+    errorHandler.logError(error, { function: 'salvarCasosGeradosBackend', questaoId });
+    const mensagem = errorHandler.getUserFriendlyMessage(error);
+    addMessage(`⚠️ ${mensagem}`, false, true);
     return false;
   }
 }
@@ -81,11 +95,21 @@ Description: ${questao.enunciado}
 Example Input: ${questao.entrada}
 Example Output: ${questao.saida}
 
+**IMPORTANT: Read the problem description carefully and identify ALL constraints and limits mentioned in the text. Do NOT generate test cases that violate these constraints.**
+
+For example:
+- If the problem says "0 < N < 13", only use N from 1 to 12
+- If it says "1 ≤ X ≤ 100", only use X from 1 to 100
+- If it mentions "string length ≤ 50", ensure inputs don't exceed this
+- Pay attention to any range limits, data type constraints, or special conditions
+
 Generate 6-8 comprehensive test cases for this problem (DO NOT include the given example). Focus on:
-1. Simple cases (2 cases): Basic functionality
-2. Edge cases (2-3 cases): Minimum/maximum values, zero, negative numbers
-3. Boundary cases (2-3 cases): Limits of the problem constraints
-4. Special cases (1 case): Any unique scenarios
+1. Simple cases (2 cases): Basic functionality within valid ranges
+2. Edge cases (2-3 cases): Boundary values of the constraints (minimum, maximum, just inside limits)
+3. Boundary cases (2-3 cases): Values at the exact limits mentioned in the problem
+4. Special cases (1 case): Any unique scenarios within constraints
+
+**CRITICAL: Every test case MUST respect ALL constraints and limits specified in the problem description. Do not generate cases that would cause invalid inputs or violate problem rules.**
 
 Format your response as a JSON array where each test case is:
 {
@@ -282,6 +306,9 @@ function setupEventListeners() {
       }
     });
   }
+
+  // Setup delegated handlers for dynamic interactive elements
+  setupDelegatedClickHandlers();
 }
 
 // Alterna visibilidade do chat
@@ -319,9 +346,27 @@ function toggleInputMode() {
 // Exibe mensagem na interface
 function addMessage(content, isUser = false, isError = false) {
   if (!chatMessages) return;
+  // Prevent adding the same bot message repeatedly (simple debounce/dedupe)
+  try {
+    const last = chatMessages.lastElementChild;
+    const lastText = last && last.textContent ? last.textContent.trim() : null;
+    const newText = (content instanceof HTMLElement) ? content.textContent.trim() : String(content).trim();
+    if (!isUser && newText && lastText === newText) {
+      console.log('⏭️ Ignorando mensagem duplicada do bot:', newText);
+      return;
+    }
+  } catch (e) {
+    // ignore dedupe errors and continue
+  }
+
   const div = document.createElement('div');
   div.className = `message ${isUser ? 'user' : isError ? 'error' : 'bot'}`;
-  div.textContent = content;
+  // Support rendering interactive HTML (buttons) when content is an element or contains HTML
+  if (content instanceof HTMLElement) {
+    div.appendChild(content);
+  } else {
+    div.textContent = content;
+  }
   chatMessages.appendChild(div);
   chatMessages.scrollTop = chatMessages.scrollHeight;
 }
@@ -448,7 +493,6 @@ async function sendToAPI(message, extraContext = "") {
       }
     }
     hideTyping();
-    addMessage(text);
     return text;
   } catch (error) {
     console.error("Erro na API:", error);
@@ -459,86 +503,83 @@ async function sendToAPI(message, extraContext = "") {
 }
 
 // ---------------------- Sistema de Avaliação de Código ----------------------
-async function executarCodigoLocalmente(codigo, linguagem, entrada = '', saidaEsperada = '') {
-  try {
+async function avaliarCodigoEstudante(codigo, linguagem, questaoId) {
+    const casosTeste = casosDeTestePorQuestao[questaoId] || [];
+    if (casosTeste.length === 0) {
+        addMessage("⚠️ Nenhum caso de teste encontrado para esta questão.", false, true);
+        return { totalCasos: 0, acertos: 0, taxaAcerto: 0, resultados: [] };
+    }
+
+    feedbackVisual.startTestSession(casosTeste.length);
+    stateManager.transitionTo(STATES.EXECUTANDO_TESTES, { questaoId, totalTestes: casosTeste.length });
+
+    const startTime = performance.now();
+
+    try {
     const payload = {
       language: linguagem,
       code: codigo,
-      input: entrada,
-      expected_output: saidaEsperada
+      testCases: casosTeste.map(tc => ({ entrada: unescapeInput(tc.entrada), saida: tc.saida }))
     };
 
-    const response = await fetch('http://localhost:3001/execute', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(payload)
-    });
+        // Centralizando a chamada para a rota /execute-batch
+        const response = await errorHandler.safeFetch(
+            'http://localhost:3001/execute-batch',
+            {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            },
+            'Executando casos de teste em lote'
+        );
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(`Erro na execução: ${response.status} - ${errorText}`);
+        const batchResults = response.results || [];
+        const resultados = batchResults.map((result, index) => {
+            const caso = casosTeste[index];
+            const passou = result.verdict === 'Accepted';
+            return {
+                caso: index + 1,
+                entrada: caso.entrada,
+                esperado: caso.saida,
+                obtido: result.actual,
+                passou,
+                erro: result.error || '',
+                verdict: result.verdict,
+                status: result.verdict,
+                tipo: caso.tipo,
+                executionTime: result.executionTime || 0
+            };
+        });
+
+        let acertos = 0;
+        for (const [index, result] of resultados.entries()) {
+            feedbackVisual.addTestResult(casosTeste[index], result, index);
+            feedbackVisual.updateProgress(index + 1, casosTeste.length);
+            if (result.passou) {
+                acertos++;
+            } else {
+                break; // Para na primeira falha
+            }
+        }
+
+        const totalTime = performance.now() - startTime;
+        feedbackVisual.showSummary(resultados, totalTime);
+
+        return {
+            totalCasos: casosTeste.length,
+            acertos,
+            taxaAcerto: (acertos / casosTeste.length) * 100,
+            resultados,
+            totalTime
+        };
+
+    } catch (error) {
+        console.error('Erro ao executar testes em lote:', error);
+        errorHandler.logError(error, { function: 'avaliarCodigoEstudante', questaoId });
+        addMessage(errorHandler.getUserFriendlyMessage(error), false, true);
+        feedbackVisual.reset();
+        return { totalCasos: casosTeste.length, acertos: 0, taxaAcerto: 0, resultados: [] };
     }
-
-    const resultado = await response.json();
-
-    return {
-      saida: resultado.output || '',
-      erro: resultado.error || '',
-      status: resultado.verdict || 'Erro Desconhecido',
-      feedbackIA: resultado.ai_feedback || null
-    };
-
-  } catch (error) {
-    console.error('Erro ao chamar o backend de execução:', error);
-    return {
-      saida: '',
-      erro: `Erro de conexão com o servidor de execução: ${error.message}`,
-      status: 'Erro de Conexão com Juiz',
-      feedbackIA: null
-    };
-  }
-}
-
-async function avaliarCodigoEstudante(codigo, linguagem, questaoId) {
-  const casosTeste = casosDeTestePorQuestao[questaoId] || [];
-  if (casosTeste.length === 0) {
-    addMessage("⚠️ Nenhum caso de teste encontrado para esta questão.", false, true);
-    return { totalCasos: 0, acertos: 0, taxaAcerto: 0, resultados: [] };
-  }
-
-  const resultados = [];
-  let acertos = 0;
-
-  for (const [index, caso] of casosTeste.entries()) {
-    const resultado = await executarCodigoLocalmente(codigo, linguagem, caso.entrada, caso.saida);
-    const passou = resultado.status === 'Accepted';
-
-    if (passou) acertos++;
-
-    resultados.push({
-      caso: index + 1,
-      entrada: caso.entrada,
-      esperado: caso.saida,
-      obtido: resultado.saida,
-      passou,
-      erro: resultado.erro,
-      status: resultado.status,
-      tipo: caso.tipo
-    });
-
-    if (resultado.status !== 'Accepted' && resultado.status !== 'Wrong Answer') {
-        break; 
-    }
-  }
-
-  return {
-    totalCasos: casosTeste.length,
-    acertos,
-    taxaAcerto: (acertos / casosTeste.length) * 100,
-    resultados
-  };
 }
 
 async function gerarFeedbackIncremental(questao, codigo, resultadosAvaliacao) {
@@ -599,23 +640,62 @@ async function processarCodigoEstudante(codigo, linguagem, questaoId) {
   addMessage("🔍 Analisando seu código...", false, false);
 
   try {
+    // Executa os testes com feedback visual
     const avaliacao = await avaliarCodigoEstudante(codigo, linguagem, questaoId);
+    
+    // Verifica se houve erro de conexão
+    if (avaliacao.totalCasos === 0) {
+      addMessage("⚠️ Não foi possível executar os testes. Verifique se o servidor está rodando.", false, true);
+      return;
+    }
+    
+    // Transição para fase de depuração
+    stateManager.transitionTo(STATES.TESTES_DEPURACAO, { 
+      avaliacao, 
+      codigo, 
+      linguagem 
+    });
+    currentStep = "testes_depuracao";
 
     const questao = dadosPlanilha.find(q => q.id === questaoId);
-    const feedback = await gerarFeedbackIncremental(questao, codigo, avaliacao);
-
-    addMessage(feedback, false);
-
+    
+    // Verifica se passou em todos os testes
     if (avaliacao.acertos === avaliacao.totalCasos) {
       addMessage("🎉 Parabéns! Seu código passou em todos os testes!", false);
+      
+      // Gera análise qualitativa
+      const feedback = await gerarFeedbackIncremental(questao, codigo, avaliacao);
+      addMessage(feedback, false);
+      
+      addMessage("", false);
+      addMessage("✨ Parabéns! Seu código passou em todos os testes!", false);
+      addMessage("Digite 'nova' para escolher outra questão ou continue conversando se quiser otimizar sua solução.", false);
+      
+      // Transiciona para o estado finalizado para permitir comandos globais
+      stateManager.transitionTo(STATES.FINALIZADO);
+      stateManager.setMetadata('todosTestesPassaram', true);
+      
     } else {
+      // Mostra estatísticas
       const stats = `📊 Estatísticas: ${avaliacao.acertos}/${avaliacao.totalCasos} casos de teste passaram (${avaliacao.taxaAcerto.toFixed(1)}%)`;
       addMessage(stats, false);
+      
+      // Gera feedback incremental da IA
+      const feedback = await gerarFeedbackIncremental(questao, codigo, avaliacao);
+      addMessage(feedback, false);
+      
+      addMessage("", false);
+      addMessage("💡 Corrija o código e envie novamente. Use o botão </> para alternar para o modo código.", false);
+      
+      // Mantém no estado de depuração
+      stateManager.setMetadata('todosTestesPassaram', false);
     }
 
   } catch (error) {
     console.error("Erro ao processar código:", error);
+    errorHandler.logError(error, { function: 'processarCodigoEstudante', questaoId });
     addMessage("❌ Ocorreu um erro ao processar seu código.", false, true);
+    feedbackVisual.showError(errorHandler.getUserFriendlyMessage(error));
   }
 }
 
@@ -628,7 +708,8 @@ async function sendMessage() {
   addMessage(message, true);
   if (inputElement) inputElement.value = '';
 
-  if (!sessionContext.question) {
+  // Se não tem questão ativa E não está aguardando confirmação, trata como seleção
+  if (!sessionContext.question && !sessionContext.questaoId) {
       await handleQuestionSelection(message);
   } else if (isCodeMode) {
       await handleCodeSubmission(message);
@@ -643,11 +724,73 @@ async function handleQuestionSelection(message) {
   const questao = dadosPlanilha.find(q => parseInt(q.id) === numero);
 
   if (!isNaN(numero) && questao) {
+      // Instead of immediately starting, ask for confirmation
+      const confirmWrapper = document.createElement('div');
+      const info = document.createElement('div');
+      info.textContent = `Você escolheu: Questão ${numero} — ${questao.titulo}. Confirma iniciar esta questão?`;
+      info.style.marginBottom = '8px';
+
+      const btnConfirm = document.createElement('button');
+      btnConfirm.textContent = 'Confirmar';
+      btnConfirm.className = 'option-btn confirm-question';
+      btnConfirm.dataset.questaoId = questao.id;
+      btnConfirm.dataset.questaoNumero = numero;
+
+      const btnCancel = document.createElement('button');
+      btnCancel.textContent = 'Cancelar';
+      btnCancel.className = 'option-btn cancel-question';
+
+      confirmWrapper.appendChild(info);
+      confirmWrapper.appendChild(btnConfirm);
+      confirmWrapper.appendChild(btnCancel);
+
+      addMessage(confirmWrapper);
+
+      // listeners will be handled by delegated click handler attached below
+  } else {
+      addMessage("Digite um número de questão válido.", false, true);
+  }
+}
+
+// Delegated click handler for interactive buttons inside chat messages
+function setupDelegatedClickHandlers() {
+  console.log("🎯 Configurando handlers delegados de clique");
+  if (!chatMessages) {
+    console.error("❌ chatMessages não encontrado");
+    return;
+  }
+  chatMessages.addEventListener('click', async (e) => {
+    const target = e.target;
+    console.log("🖱️ Clique detectado em:", target.className, target.textContent);
+    if (!(target instanceof HTMLElement)) return;
+
+    // Confirm question
+    if (target.classList.contains('confirm-question')) {
+      console.log("✅ Botão Confirmar clicado");
+      const qid = target.dataset.questaoId;
+      const qnum = target.dataset.questaoNumero;
+      const questao = dadosPlanilha.find(q => String(q.id) === String(qid) || String(q.id) === String(qnum));
+      if (!questao) {
+        console.error("❌ Questão não encontrada nos dados");
+        addMessage('⚠️ Questão não encontrada.', false, true);
+        return;
+      }
+
+      console.log("🚀 Iniciando questão:", questao.titulo);
+      
+      // Marca que está confirmado para evitar loop
+      sessionContext.confirmando = false;
+      
+      // proceed with selecting the question
       resetSessionContext();
-      sessionContext.question = `Questão ${numero}: ${questao.titulo}`;
+      sessionContext.question = `Questão ${qnum}: ${questao.titulo}`;
       sessionContext.questaoId = questao.id;
       saveSessionContext();
       questaoAtual = questao.titulo;
+
+      // Transição de estado
+      stateManager.reset();
+      stateManager.transitionTo(STATES.COMPREENSAO, { questaoId: questao.id, questao });
 
       addMessage(`📚 ${sessionContext.question}`);
       addMessage(`📝 ${questao.enunciado}`);
@@ -659,10 +802,23 @@ async function handleQuestionSelection(message) {
       addMessage("Agora você pode enviar seu código (use o ícone </> para alternar) ou seguir o método guiado por texto.");
 
       if (languageSelector) languageSelector.style.display = 'block';
-      currentStep = "codificacao_variaveis";
-  } else {
-      addMessage("Digite um número de questão válido.", false, true);
-  }
+      
+  // Instrução flexível: qualquer mensagem inicia o fluxo guiado
+  addMessage("💬 Para iniciar o passo a passo guiado, digite qualquer coisa (por exemplo: 'oi', 'continuar' ou 'iniciar').");
+
+      return;
+    }
+
+    // Cancel question selection
+    if (target.classList.contains('cancel-question')) {
+      console.log("❌ Botão Cancelar clicado");
+      // Limpa contexto ao cancelar
+      resetSessionContext();
+      addMessage('Seleção cancelada. Digite novamente o número da questão desejada.');
+      return;
+    }
+
+  });
 }
 
 // ---------------------- Submissão de Código  ----------------------
@@ -677,53 +833,110 @@ async function handleCodeSubmission(code) {
   sessionContext.linguagem = linguagemSelecionada;
   saveSessionContext();
 
+  // Transição para estado de execução
+  stateManager.transitionTo(STATES.AGUARDANDO_CODIGO, { codigo: code, linguagem: linguagemSelecionada });
+  
   await processarCodigoEstudante(code, linguagemSelecionada, sessionContext.questaoId);
 }
 
 // ---------------------- Fluxo Guiado  ----------------------
 async function handleGuidedFlow(message) {
-  const cmd = message.toLowerCase().trim();
+    const cmd = message.toLowerCase().trim();
+    console.log("🎮 handleGuidedFlow chamado com:", message, "Estado atual:", stateManager.getState());
 
-  if (['finish', 'complete', 'menu', 'new', 'exit'].includes(cmd)) {
-      addMessage('🎉 Parabéns! Você concluiu o desafio com sucesso!');
-      resetSessionContext(); 
-      currentStep = null;     
-      questaoAtual = "";
-      if (languageSelector) languageSelector.style.display = 'none';
-      addMessage("🎓 Você pode escolher uma nova questão na lista.");
+  const globalCmds = ['finish', 'complete', 'menu', 'new', 'exit', 'nova', 'voltar'];
+  if (stateManager.isState(STATES.COMPREENSAO)) {
+    if (globalCmds.includes(cmd)) {
+      // comando global será tratado mais abaixo
+    } else if (cmd && cmd.length > 0) {
+      if (!stateManager.canTransitionTo(STATES.CODIFICACAO_VARIAVEIS)) {
+        console.log('ℹ️ Fluxo guiado já iniciado ou transição não permitida.');
+      } else {
+        console.log("🎯 Iniciando fluxo guiado por mensagem livre:", cmd);
+        stateManager.transitionTo(STATES.CODIFICACAO_VARIAVEIS);
+        currentStep = "codificacao_variaveis";
+
+        // Pede a primeira pergunta do fluxo guiado
+        const feedbackInicial = await sendToAPI("Inicie a conversa para a etapa de codificação de variáveis.", "Peça ao aluno para começar descrevendo as variáveis de entrada necessárias.");
+        addMessage(feedbackInicial, false);
+      }
       return;
+    }
+  }
+  // Comandos globais (mais flexíveis - funcionam em TESTES_DEPURACAO também)
+  if (globalCmds.includes(cmd)) {
+    console.log("🎯 Comando global detectado:", cmd);
+    const allowedStates = [STATES.FINALIZADO, STATES.IDLE, STATES.TESTES_DEPURACAO];
+    if (!allowedStates.includes(stateManager.getState())) {
+      console.log("🚫 Comando bloqueado - estado não permitido:", stateManager.getState());
+      addMessage('⚠️ Este comando não pode ser usado neste momento. Complete a fase atual primeiro.', false, true);
+      return;
+    }
+
+    console.log("✅ Comando permitido - executando reset");
+    addMessage('🎉 Sessão finalizada!');
+        
+    if (stateManager.canTransitionTo(STATES.FINALIZADO)) {
+      stateManager.transitionTo(STATES.FINALIZADO);
+    }
+    stateManager.reset();
+    resetSessionContext();
+    currentStep = null;
+    questaoAtual = '';
+        
+    if (languageSelector) languageSelector.style.display = 'none';
+        
+    // Mostra o menu de questões novamente (sem setTimeout para evitar bugs)
+    mostrarMenuQuestoes();
+    return;
   }
 
-  if (currentStep === "codificacao_variaveis") {
-      const feedback = await sendToAPI(message, codificacaoInfo + "\nO aluno declarou as variáveis. Se estiver correto, peça o processamento.");
-      updateSessionContext("codificacao_variaveis", message, feedback);
-      if (feedback && feedback.includes("✅")) {
-          currentStep = "codificacao_processamento";
-          addMessage("⚙️ Ótimo! E como seria o PROCESSAMENTO (os cálculos ou a lógica principal) do programa?");
-      }
-  } else if (currentStep === "codificacao_processamento") {
-      const feedback = await sendToAPI(message, codificacaoInfo + "\nO aluno escreveu o processamento. Se estiver correto, peça a saída.");
-      updateSessionContext("codificacao_processamento", message, feedback);
-      if (feedback && feedback.includes("✅")) {
-          currentStep = "codificacao_saida";
-          addMessage("📋 Perfeito! Agora, como você mostraria a SAÍDA (o resultado final)?");
-      }
-  } else if (currentStep === "codificacao_saida") {
-      const feedback = await sendToAPI(message, codificacaoInfo + "\nO aluno sugeriu a saída. Se estiver correto, parabenize e avance para os testes.");
-      updateSessionContext("codificacao_saida", message, feedback);
-      if (feedback && feedback.includes("✅")) {
-          currentStep = "testes_depuracao";
-          addMessage("🧪 Fantástico, a lógica está completa! Agora vamos para a fase de TESTES E DEPURAÇÃO.");
-          const feedbackTestes = await sendToAPI("Meu código está pronto para testar.", testes_depuracaoInfo);
-          updateSessionContext('testes_depuracao', "Meu código está pronto para testar.", feedbackTestes);
-      }
-  } else if (currentStep === "testes_depuracao") {
-      const extraContext = `O aluno está na fase de testes. A mensagem/saída dele é: "${message}"`;
-      const feedback = await sendToAPI(message, extraContext);
-      updateSessionContext('testes_depuracao', message, feedback);
-  } else {
-      await sendToAPI(message);
-  }
+    const guidedSteps = {
+        [STATES.CODIFICACAO_VARIAVEIS]: {
+            prompt: "\nO aluno declarou as variáveis. Se estiver correto, peça o processamento.",
+            nextState: STATES.CODIFICACAO_PROCESSAMENTO,
+            nextMessage: "⚙️ Ótimo! E como seria o PROCESSAMENTO (os cálculos ou a lógica principal) do programa?"
+        },
+        [STATES.CODIFICACAO_PROCESSAMENTO]: {
+            prompt: "\nO aluno descreveu o processamento. Se estiver correto, peça a saída.",
+            nextState: STATES.CODIFICACAO_SAIDA,
+            nextMessage: "📋 Perfeito! Agora, como você mostraria a SAÍDA (o resultado final)?"
+        },
+        [STATES.CODIFICACAO_SAIDA]: {
+            prompt: "\nO aluno descreveu a saída. Se estiver correto, parabenize e peça o código completo.",
+            nextState: STATES.AGUARDANDO_CODIGO,
+            nextMessage: "🧪 Fantástico, a lógica está completa! Agora envie seu código completo usando o botão </> para alternar para o modo código."
+        }
+    };
+
+  const currentGuidedStep = guidedSteps[stateManager.getState()];
+
+    if (currentGuidedStep) {
+        // Envia a mensagem do usuário para a IA e obtém o feedback
+        const feedback = await sendToAPI(message, codificacaoInfo + currentGuidedStep.prompt);
+  updateSessionContext(stateManager.getState(), message, feedback);
+        
+        const shouldAdvance = feedback.includes('✅');
+
+        addMessage(feedback, false); 
+
+        if (shouldAdvance) {
+            console.log(`✅ Avançando para próximo estado: ${currentGuidedStep.nextState}`);
+            stateManager.transitionTo(currentGuidedStep.nextState);
+            addMessage(currentGuidedStep.nextMessage, false);
+        } else {
+            console.log(`⏸️ Aguardando resposta melhor. Feedback: ${feedback.substring(0, 50)}...`);
+        }
+  } else if (stateManager.getState() === STATES.TESTES_DEPURACAO) {
+        const extraContext = `O aluno está na fase de testes/depuração. A mensagem dele é: "${message}"`;
+        const feedback = await sendToAPI(message, extraContext);
+        updateSessionContext('testes_depuracao', message, feedback);
+        addMessage(feedback, false);
+    } else {
+        // Fallback para outros estados ou mensagens gerais
+        const feedback = await sendToAPI(message);
+        addMessage(feedback, false);
+    }
 }
 
 // ---------------------- Inicialização ----------------------
@@ -747,11 +960,11 @@ async function initAPI() {
   }
 
   try {
-      const questoesResponse = await fetch('http://localhost:3001/questoes');
-      if (!questoesResponse.ok) {
-          throw new Error(`Falha ao buscar questões: ${questoesResponse.statusText}`);
-      }
-      dadosPlanilha = await questoesResponse.json();
+      dadosPlanilha = await errorHandler.safeFetch(
+          'http://localhost:3001/questoes',
+          {},
+          'Carregando questões'
+      );
 
       if (dadosPlanilha.length === 0) {
           throw new Error("Backend não retornou nenhuma questão.");
@@ -759,20 +972,28 @@ async function initAPI() {
 
       casosDeTestePorQuestao = await carregarCasosTeste();
 
-      addMessage("🎓 Bem-vindo ao Assistente Educacional!");
-      addMessage("Questões disponíveis:");
-
-      let listaQuestoes = "";
-      dadosPlanilha.forEach(questao => {
-          listaQuestoes += `${questao.id}. ${questao.titulo}\n`;
-      });
-      addMessage(listaQuestoes);
-      addMessage("Digite o número da questão que deseja resolver:");
+      mostrarMenuQuestoes();
 
   } catch (error) {
-      console.error("❌ Erro ao carregar dados do backend:", error);
-      addMessage("❌ Erro ao carregar questões e casos de teste. Verifique se o servidor backend está rodando corretamente.", false, true);
+      errorHandler.logError(error, { function: 'inicialização' });
+      const mensagem = errorHandler.getUserFriendlyMessage(error);
+      addMessage(`${mensagem} Verifique se o servidor backend está rodando.`, false, true);
   }
+}
+
+// ---------------------- Menu de Questões ----------------------
+function mostrarMenuQuestoes() {
+    console.log("📋 Mostrando menu de questões");
+    addMessage("");
+    addMessage("🎓 Bem-vindo ao Assistente Educacional!");
+    addMessage("Questões disponíveis:");
+
+    let listaQuestoes = "";
+    dadosPlanilha.forEach(questao => {
+        listaQuestoes += `${questao.id}. ${questao.titulo}\n`;
+    });
+    addMessage(listaQuestoes);
+    addMessage("Digite o número da questão que deseja resolver:");
 }
 
 // ---------------------- Inicialização Principal com DOM ----------------------

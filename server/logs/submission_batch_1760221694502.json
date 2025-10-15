@@ -1,0 +1,83 @@
+{
+  "submissionId": "batch_1760221694502",
+  "timestamp": "2025-10-11T22:28:14.502Z",
+  "language": "python",
+  "code": "def vence(rajesh, sheldon):\n    regras = {\n        'tesoura': ['papel', 'lagarto'],\n        'papel': ['pedra', 'spock'],\n        'pedra': ['lagarto', 'tesoura'],\n        'lagarto': ['spock', 'papel'],\n        'spock': ['tesoura', 'pedra']\n    }\n    if rajesh == sheldon:\n        return \"empate\"\n    elif sheldon in regras[rajesh]:\n        return \"rajesh\"\n    else:\n        return \"sheldon\"\n        \nC = int(input())\n\nfor _ in range(C):\n    rajesh, sheldon = input().split()\n    resultado = vence(rajesh, sheldon)\n    print(resultado)",
+  "testCases": [
+    {
+      "entrada": "3\nspock spock\ntesoura spock\nlagarto spock",
+      "saida": "empate\\nsheldon\\nrajesh"
+    },
+    {
+      "entrada": "1\ntesoura papel",
+      "saida": "rajesh"
+    },
+    {
+      "entrada": "1\npapel tesoura",
+      "saida": "sheldon"
+    },
+    {
+      "entrada": "1\npedra pedra",
+      "saida": "empate"
+    },
+    {
+      "entrada": "1\nspock pedra",
+      "saida": "rajesh"
+    },
+    {
+      "entrada": "1\nspock lagarto",
+      "saida": "sheldon"
+    },
+    {
+      "entrada": "1\npapel spock",
+      "saida": "rajesh"
+    },
+    {
+      "entrada": "1\nlagarto tesoura",
+      "saida": "sheldon"
+    },
+    {
+      "entrada": "4\npedra papel\ntesoura tesoura\nlagarto spock\nspock papel",
+      "saida": "sheldon\nempate\nrajesh\nsheldon"
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "executionTime": 220.0122,
+    "memoryUsage": 9.793060302734375
+  },
+  "results": [
+    {
+      "caseId": "case_1",
+      "status": "Success",
+      "verdict": "Wrong Answer",
+      "input": "3\nspock spock\ntesoura spock\nlagarto spock",
+      "expected": "empate\\nsheldon\\nrajesh",
+      "actual": "empate\r\nsheldon\r\nrajesh\r\n",
+      "error": "",
+      "errorType": "content_mismatch",
+      "diff": [
+        {
+          "position": 6,
+          "expected": "\\",
+          "actual": "\r"
+        },
+        {
+          "position": 7,
+          "expected": "n",
+          "actual": "\n"
+        },
+        {
+          "position": 15,
+          "expected": "\\",
+          "actual": "\r"
+        }
+      ],
+      "executionTime": 220.0122,
+      "memoryUsage": 9.793060302734375,
+      "timestamp": "2025-10-11T22:28:14.502Z"
+    }
+  ]
+}

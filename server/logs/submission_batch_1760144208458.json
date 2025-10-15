@@ -1,0 +1,143 @@
+{
+  "submissionId": "batch_1760144208458",
+  "timestamp": "2025-10-11T00:56:48.458Z",
+  "language": "python",
+  "code": "N = int(input())\nfatorial = 1\nfor c in range(N, 0, -1):\n    fatorial *= c\nprint('{}'.format(fatorial))",
+  "testCases": [
+    {
+      "entrada": "4",
+      "saida": "24"
+    },
+    {
+      "entrada": "3",
+      "saida": "6"
+    },
+    {
+      "entrada": "5",
+      "saida": "120"
+    },
+    {
+      "entrada": "0",
+      "saida": "1"
+    },
+    {
+      "entrada": "1",
+      "saida": "1"
+    },
+    {
+      "entrada": "7",
+      "saida": "5040"
+    },
+    {
+      "entrada": "10",
+      "saida": "3628800"
+    }
+  ],
+  "summary": {
+    "total": 7,
+    "passed": 7,
+    "failed": 0,
+    "executionTime": 430.88669999999996,
+    "memoryUsage": 10.160614013671875
+  },
+  "results": [
+    {
+      "caseId": "case_1",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "4",
+      "expected": "24",
+      "actual": "24\r\n",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 101.66,
+      "memoryUsage": 9.615951538085938,
+      "timestamp": "2025-10-11T00:56:48.459Z"
+    },
+    {
+      "caseId": "case_2",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "3",
+      "expected": "6",
+      "actual": "6\r\n",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 54.935,
+      "memoryUsage": 9.758476257324219,
+      "timestamp": "2025-10-11T00:56:48.459Z"
+    },
+    {
+      "caseId": "case_3",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "5",
+      "expected": "120",
+      "actual": "120\r\n",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 54.402,
+      "memoryUsage": 9.907135009765625,
+      "timestamp": "2025-10-11T00:56:48.459Z"
+    },
+    {
+      "caseId": "case_4",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "0",
+      "expected": "1",
+      "actual": "1\r\n",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 58.9138,
+      "memoryUsage": 10.026557922363281,
+      "timestamp": "2025-10-11T00:56:48.459Z"
+    },
+    {
+      "caseId": "case_5",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "1",
+      "expected": "1",
+      "actual": "1\r\n",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 56.3696,
+      "memoryUsage": 10.160614013671875,
+      "timestamp": "2025-10-11T00:56:48.459Z"
+    },
+    {
+      "caseId": "case_6",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "7",
+      "expected": "5040",
+      "actual": "5040\r\n",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 53.6769,
+      "memoryUsage": 9.759552001953125,
+      "timestamp": "2025-10-11T00:56:48.459Z"
+    },
+    {
+      "caseId": "case_7",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "10",
+      "expected": "3628800",
+      "actual": "3628800\r\n",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 50.9294,
+      "memoryUsage": 9.868247985839844,
+      "timestamp": "2025-10-11T00:56:48.459Z"
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "submissionId": "batch_1760221124338",
+  "timestamp": "2025-10-11T22:18:44.338Z",
+  "language": "python",
+  "code": "C = int(input())\nregras = {\n    \"tesoura\": [\"papel\", \"lagarto\"],\n    \"papel\": [\"pedra\", \"spock\"],\n    \"pedra\": [\"lagarto\", \"tesoura\"],\n    \"lagarto\": [\"spock\", \"papel\"],\n    \"spock\": [\"tesoura\", \"pedra\"]  # ← Corrigido para minúscula\n}\n\ndef determinar_vencedor(escolha_raj, escolha_sheldon):\n    if escolha_raj == escolha_sheldon:\n        return \"empate\"\n    elif escolha_sheldon in regras[escolha_raj]:\n        return \"rajesh\"\n    else:\n        return \"sheldon\"\n\nfor caso in range(C):\n    escolha_raj, escolha_sheldon = input().split()\n    resultado = determinar_vencedor(escolha_raj, escolha_sheldon)\n    print(resultado)",
+  "testCases": [
+    {
+      "entrada": "3\nspock spock\ntesoura spock\nlagarto spock",
+      "saida": "empate\\nsheldon\\nrajesh"
+    },
+    {
+      "entrada": "1\npapel pedra",
+      "saida": "rajesh"
+    },
+    {
+      "entrada": "1\npedra papel",
+      "saida": "sheldon"
+    },
+    {
+      "entrada": "1\ntesoura tesoura",
+      "saida": "empate"
+    },
+    {
+      "entrada": "1\ntesoura lagarto",
+      "saida": "rajesh"
+    },
+    {
+      "entrada": "1\npedra spock",
+      "saida": "sheldon"
+    },
+    {
+      "entrada": "1\nlagarto papel",
+      "saida": "rajesh"
+    },
+    {
+      "entrada": "1\nspock tesoura",
+      "saida": "sheldon"
+    },
+    {
+      "entrada": "1\npedra tesoura",
+      "saida": "rajesh"
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "executionTime": 253.0198,
+    "memoryUsage": 11.486618041992188
+  },
+  "results": [
+    {
+      "caseId": "case_1",
+      "status": "Success",
+      "verdict": "Wrong Answer",
+      "input": "3\nspock spock\ntesoura spock\nlagarto spock",
+      "expected": "empate\\nsheldon\\nrajesh",
+      "actual": "empate\r\nsheldon\r\nrajesh\r\n",
+      "error": "",
+      "errorType": "content_mismatch",
+      "diff": [
+        {
+          "position": 6,
+          "expected": "\\",
+          "actual": "\r"
+        },
+        {
+          "position": 7,
+          "expected": "n",
+          "actual": "\n"
+        },
+        {
+          "position": 15,
+          "expected": "\\",
+          "actual": "\r"
+        }
+      ],
+      "executionTime": 253.0198,
+      "memoryUsage": 11.486618041992188,
+      "timestamp": "2025-10-11T22:18:44.338Z"
+    }
+  ]
+}

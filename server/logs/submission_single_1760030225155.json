@@ -1,0 +1,25 @@
+{
+  "submissionId": "single_1760030225155",
+  "timestamp": "2025-10-09T17:17:05.155Z",
+  "language": "python",
+  "code": "X = int(input())\nY = int(input())\ndef naom13(X, Y):\n    if X > Y:\n        X, Y = Y, X\n    soma = 0\n    for c in range(X, Y + 1):\n        if c % 13 != 0:\n            soma += c\n    return soma\nresultado = naom13(X, Y)\nprint('{}'.format(resultado))",
+  "testCases": [
+    {
+      "input": "100\\n200",
+      "expected": "13954",
+      "actual": "",
+      "status": "Runtime Error",
+      "executionTime": 102.8663
+    }
+  ],
+  "results": [
+    {
+      "status": "Runtime Error",
+      "output": "",
+      "error": "Traceback (most recent call last):\r\n  File \"C:\\Users\\Jean\\AppData\\Local\\Temp\\judge-Z88kUR\\script.py\", line 1, in <module>\r\n    X = int(input())\r\n        ^^^^^^^^^^^^\r\nValueError: invalid literal for int() with base 10: '100\\\\n200'\r\n",
+      "executionTime": 102.8663,
+      "memoryUsage": 10.257987976074219,
+      "timestamp": "2025-10-09T17:17:05.155Z"
+    }
+  ]
+}

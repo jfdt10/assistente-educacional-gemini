@@ -1,0 +1,99 @@
+{
+  "submissionId": "batch_1760218620341",
+  "timestamp": "2025-10-11T21:37:00.341Z",
+  "language": "python",
+  "code": "X, Y = map(int, input().split())\n\nsoma = 0\nfor c in range(X, Y)\n    if c % 13 != 0:\n        soma += c\nprint(soma)",
+  "testCases": [
+    {
+      "entrada": "100\n200",
+      "saida": "13954"
+    },
+    {
+      "entrada": "1\n5",
+      "saida": "15"
+    },
+    {
+      "entrada": "5\n1",
+      "saida": "15"
+    },
+    {
+      "entrada": "10\n10",
+      "saida": "10"
+    },
+    {
+      "entrada": "13\n13",
+      "saida": "0"
+    },
+    {
+      "entrada": "-20\n-10",
+      "saida": "-152"
+    },
+    {
+      "entrada": "1\n30",
+      "saida": "426"
+    },
+    {
+      "entrada": "14\n25",
+      "saida": "234"
+    },
+    {
+      "entrada": "-10\n15",
+      "saida": "52"
+    },
+    {
+      "entrada": "1\n10",
+      "saida": "55"
+    },
+    {
+      "entrada": "13\n20",
+      "saida": "119"
+    },
+    {
+      "entrada": "20\n13",
+      "saida": "119"
+    },
+    {
+      "entrada": "15\n15",
+      "saida": "15"
+    },
+    {
+      "entrada": "13\n13",
+      "saida": "0"
+    },
+    {
+      "entrada": "-10\n0",
+      "saida": "-55"
+    },
+    {
+      "entrada": "-20\n20",
+      "saida": "0"
+    },
+    {
+      "entrada": "26\n39",
+      "saida": "390"
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "executionTime": 354.4989,
+    "memoryUsage": 10.833732604980469
+  },
+  "results": [
+    {
+      "caseId": "case_1",
+      "status": "Runtime Error",
+      "verdict": "Runtime Error",
+      "input": "100\n200",
+      "expected": "13954",
+      "actual": "",
+      "error": "  File \"C:\\Users\\Jean\\AppData\\Local\\Temp\\judge-10hZbC\\script.py\", line 4\r\n    for c in range(X, Y)\r\n                        ^\r\nSyntaxError: expected ':'\r\n",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 354.4989,
+      "memoryUsage": 10.833732604980469,
+      "timestamp": "2025-10-11T21:37:00.342Z"
+    }
+  ]
+}

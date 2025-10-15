@@ -2,25 +2,365 @@ questao_id,entrada,saida,tipo
 1,"100\n200","13954",padrao
 2,"4","24",padrao
 3,"3\n8 0 7","2",padrao
+3,"2\n1 1","1",padrao
 4,"3\nspock spock\ntesoura spock\nlagarto spock","empate\nsheldon\nrajesh",padrao
-2,3,6,gerado
-2,5,120,gerado
-2,1,1,gerado
-2,6,720,gerado
-2,10,3628800,gerado
+5,"1\n1 2 3 2 1","2",padrao
+5,"3\n4 1 1 2 1","0",padrao
+4,"1
+tesoura papel",rajesh,gerado
+4,"1
+lagarto pedra",sheldon,gerado
+4,"1
+pedra pedra",empate,gerado
+4,"1
+spock tesoura",rajesh,gerado
+4,"1
+spock papel",sheldon,gerado
+4,"1
+tesoura lagarto",rajesh,gerado
+4,"1
+papel lagarto",sheldon,gerado
+4,"1
+pedra lagarto",rajesh,gerado
+4,"1
+pedra papel",sheldon,gerado
+4,"1
+tesoura lagarto",rajesh,gerado
+4,"1
+spock tesoura",sheldon,gerado
+4,"5
+pedra pedra
+papel papel
+tesoura tesoura
+lagarto lagarto
+spock spock","empate
+empate
+empate
+empate
+empate",gerado
+4,"3
+papel spock
+lagarto pedra
+tesoura papel","rajesh
+sheldon
+rajesh",gerado
+4,"2
+spock lagarto
+papel tesoura","sheldon
+sheldon",gerado
 1,"1
-5",15,gerado
+10",55,gerado
+1,"20
+1",197,gerado
+1,"5
+5",5,gerado
+1,"13
+13",0,gerado
+1,"-5
+5",0,gerado
+1,"-10
+15",52,gerado
+1,"1000
+1050",48193,gerado
+1,"1
+10",55,gerado
+1,"20
+10",152,gerado
+1,"13
+26",234,gerado
+1,"-5
+5",0,gerado
+1,"-30
+-1",-426,gerado
+1,"1
+12",78,gerado
+1,"10
+10",10,gerado
+1,"13
+13",0,gerado
+1,"1
+10",55,gerado
+1,"10
+20",152,gerado
+1,"10
+10",10,gerado
+1,"20
+10",152,gerado
+1,"0
+20",197,gerado
+1,"-20
+-1",-197,gerado
+1,"13
+39",624,gerado
+1,"1
+10",55,gerado
 1,"10
 20",152,gerado
 1,"20
 10",152,gerado
+1,"10
+10",10,gerado
+1,"-20
+-10",-152,gerado
+1,"-15
+15",0,gerado
+1,"1
+26",312,gerado
+1,"14
+25",234,gerado
+1,"1
+5",15,gerado
+1,"1
+20",197,gerado
+1,"20
+1",197,gerado
+1,"-5
+5",0,gerado
+1,"-20
+-1",-197,gerado
+1,"12
+14",26,gerado
+1,"13
+13",0,gerado
+1,"1
+100",4686,gerado
+1,"1
+15",107,gerado
 1,"15
-15",15,gerado
+1",107,gerado
+1,"13
+26",234,gerado
+1,"5
+5",5,gerado
+1,"13
+13",0,gerado
+1,"-10
+10",0,gerado
+1,"-20
+-1",-197,gerado
+1,"500
+400",41862,gerado
+1,"1
+10",55,gerado
+1,"10
+20",152,gerado
+1,"20
+10",152,gerado
+1,"12
+14",26,gerado
+1,"13
+13",0,gerado
+1,"14
+14",14,gerado
+1,"-5
+5",0,gerado
+1,"-20
+-10",-152,gerado
+1,"1
+5",15,gerado
+1,"5
+1",15,gerado
+1,"10
+20",152,gerado
+1,"-5
+5",0,gerado
+1,"-15
+-10",-62,gerado
+1,"7
+7",7,gerado
+1,"13
+13",0,gerado
+1,"1
+50",1197,gerado
+1,"1
+10",55,gerado
+1,"10
+30",381,gerado
+1,"30
+10",381,gerado
+1,"-10
+10",0,gerado
+1,"0
+15",107,gerado
+1,"13
+20",119,gerado
+1,"26
+26",0,gerado
+1,"10
+10",10,gerado
+1,"1
+10",55,gerado
+1,"10
+20",152,gerado
+1,"14
+14",14,gerado
+1,"13
+26",234,gerado
+1,"20
+10",152,gerado
+1,"1
+12",78,gerado
+1,"14
+25",234,gerado
+1,"-5
+5",0,gerado
+1,"1
+10",55,gerado
+1,"1
+15",107,gerado
+1,"20
+10",152,gerado
+1,"5
+5",5,gerado
+1,"13
+13",0,gerado
+1,"-5
+10",40,gerado
+1,"10
+40",697,gerado
+1,"1
+10",55,gerado
+1,"20
+30",249,gerado
+1,"13
+13",0,gerado
+1,"-5
+5",0,gerado
+1,"-20
+-10",-152,gerado
+1,"13
+20",119,gerado
+1,"10
+26",267,gerado
+1,"150
+50",9320,gerado
+2,0,1,gerado
+2,1,1,gerado
+2,2,2,gerado
+2,3,6,gerado
+2,5,120,gerado
+2,7,5040,gerado
+2,11,39916800,gerado
+2,12,479001600,gerado
+1,"1
+10",55,gerado
+1,"10
+1",55,gerado
+1,"10
+20",152,gerado
+1,"13
+26",234,gerado
+1,"5
+5",5,gerado
+1,"13
+13",0,gerado
+1,"50
+70",1143,gerado
+1,"1
+10",55,gerado
+1,"10
+1",55,gerado
+1,"10
+20",152,gerado
+1,"30
+10",381,gerado
+1,"5
+5",5,gerado
 1,"13
 13",0,gerado
 1,"-20
 -10",-152,gerado
+1,"50
+100",3539,gerado
+1,"1
+10",55,gerado
+1,"10
+30",381,gerado
+1,"12
+14",26,gerado
+1,"13
+20",119,gerado
+1,"20
+13",119,gerado
+1,"1
+1",1,gerado
+1,"13
+13",0,gerado
 1,"-5
 5",0,gerado
-1,"1
-30",426,gerado
+4,"1
+papel pedra",rajesh,gerado
+4,"1
+tesoura spock",sheldon,gerado
+4,"1
+pedra pedra",empate,gerado
+4,"1
+lagarto papel",rajesh,gerado
+4,"1
+spock pedra",sheldon,gerado
+4,"3
+tesoura papel
+pedra lagarto
+papel spock","rajesh
+rajesh
+rajesh",gerado
+4,"4
+pedra papel
+papel spock
+lagarto tesoura
+spock pedra","sheldon
+sheldon
+sheldon
+sheldon",gerado
+4,"2
+tesoura papel
+spock tesoura","rajesh
+rajesh",gerado
+4,"2
+pedra lagarto
+papel spock","rajesh
+rajesh",gerado
+4,"3
+pedra pedra
+tesoura spock
+papel lagarto","empate
+sheldon
+sheldon",gerado
+4,"5
+tesoura papel
+papel pedra
+pedra lagarto
+lagarto spock
+spock tesoura","rajesh
+rajesh
+rajesh
+rajesh
+rajesh",gerado
+4,"5
+papel tesoura
+pedra papel
+lagarto pedra
+spock lagarto
+tesoura spock","sheldon
+sheldon
+sheldon
+sheldon
+sheldon",gerado
+4,"5
+pedra pedra
+papel papel
+tesoura tesoura
+lagarto lagarto
+spock spock","empate
+empate
+empate
+empate
+empate",gerado
+4,"4
+pedra spock
+lagarto papel
+tesoura tesoura
+papel pedra","sheldon
+rajesh
+empate
+rajesh",gerado

@@ -325,6 +325,23 @@ body {
     background-color: #2c7ae0;
 }
 
+/* Estilos específicos para botões de confirmação */
+.confirm-question {
+    background-color: #28a745;
+}
+
+.confirm-question:hover {
+    background-color: #218838;
+}
+
+.cancel-question {
+    background-color: #dc3545;
+}
+
+.cancel-question:hover {
+    background-color: #c82333;
+}
+
 /* Language Selector */
 .language-selector {
     padding: 15px 20px;

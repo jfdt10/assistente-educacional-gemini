@@ -1,0 +1,67 @@
+{
+  "submissionId": "batch_1760144593175",
+  "timestamp": "2025-10-11T01:03:13.175Z",
+  "language": "python",
+  "code": "T = int(input())\n\nif T >= 1 and T <= 100:\n    for c in range(1, T+1):\n        escolha_sheldon, escolha_raj = map(str,input().split())\n        \n        if escolha_sheldon == escolha_raj:\n            print(\"Caso #{}: De novo!\" .format(c))\n        elif (escolha_sheldon == \"tesoura\" and (escolha_raj == \"papel\" or escolha_raj == \"lagarto\")) or \\\n        (escolha_sheldon == \"papel\" and (escolha_raj == \"pedra\" or escolha_raj == \"Spock\")) or \\\n        (escolha_sheldon == \"pedra\" and (escolha_raj == \"lagarto\" or escolha_raj == \"tesoura\")) or \\\n        (escolha_sheldon == \"lagarto\" and (escolha_raj == \"Spock\" or escolha_raj == \"papel\")) or \\\n        (escolha_sheldon == \"Spock\" and (escolha_raj == \"tesoura\" or escolha_raj == \"pedra\")):\n            print(\"Caso #{}: Bazinga!\" .format(c))\n        else:\n            print(\"Caso #{}: Raj trapaceou!\" .format(c)) o codigo está perfeito.",
+  "testCases": [
+    {
+      "entrada": "3\\n8 0 7",
+      "saida": "2"
+    },
+    {
+      "entrada": "4\n5 1 9 3",
+      "saida": "2"
+    },
+    {
+      "entrada": "5\n10 20 5 15 25",
+      "saida": "3"
+    },
+    {
+      "entrada": "1\n100",
+      "saida": "1"
+    },
+    {
+      "entrada": "4\n5 5 5 5",
+      "saida": "1"
+    },
+    {
+      "entrada": "3\n10 0 5",
+      "saida": "2"
+    },
+    {
+      "entrada": "5\n2 8 4 6 10",
+      "saida": "1"
+    },
+    {
+      "entrada": "5\n10 8 4 6 2",
+      "saida": "5"
+    },
+    {
+      "entrada": "7\n10 5 20 5 15 5 30",
+      "saida": "2"
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "executionTime": 84.7277,
+    "memoryUsage": 9.6124267578125
+  },
+  "results": [
+    {
+      "caseId": "case_1",
+      "status": "Runtime Error",
+      "verdict": "Runtime Error",
+      "input": "3\\n8 0 7",
+      "expected": "2",
+      "actual": "",
+      "error": "  File \"C:\\Users\\Jean\\AppData\\Local\\Temp\\judge-O9ucLb\\script.py\", line 16\r\n    print(\"Caso #{}: Raj trapaceou!\" .format(c)) o codigo est� perfeito.\r\n                                                 ^\r\nSyntaxError: invalid syntax\r\n",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 84.7277,
+      "memoryUsage": 9.6124267578125,
+      "timestamp": "2025-10-11T01:03:13.175Z"
+    }
+  ]
+}

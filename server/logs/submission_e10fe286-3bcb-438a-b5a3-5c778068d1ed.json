@@ -1,0 +1,32 @@
+{
+  "submissionId": "e10fe286-3bcb-438a-b5a3-5c778068d1ed",
+  "timestamp": "2025-10-06T22:36:07.343Z",
+  "questionId": "lista_encadeada_avancada",
+  "language": "c",
+  "code": "#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n#include <locale.h>\n\n// ... (c�digo anterior permanece o mesmo at� a fun��o main)\n\nint main() {\n    // Configura o locale para usar ponto como separador decimal\n    setlocale(LC_NUMERIC, \"C\");\n    \n    Funcionario* lista = NULL;\n    \n    // Adiciona funcion�rios\n    adicionarFuncionario(&lista, 1, \"Joao Silva\", 3500.50);\n    adicionarFuncionario(&lista, 2, \"Maria Santos\", 4200.75);\n    adicionarFuncionario(&lista, 3, \"Carlos Oliveira\", 3800.25);\n    \n    // Ordena por sal�rio\n    ordenarPorSalario(&lista);\n    \n    // Imprime a lista ordenada\n    printf(\"Lista de Funcionarios (ordenada por salario):\\n\");\n    Funcionario* atual = lista;\n    while (atual != NULL) {\n        printf(\"ID: %d, Nome: %s, Salario: R$ %.2f\\n\", \n               atual->id, atual->nome, atual->salario);\n        atual = atual->proximo;\n    }\n    \n    // Busca um funcion�rio\n    int idBusca = 2;\n    Funcionario* encontrado = buscarPorId(lista, idBusca);\n    if (encontrado != NULL) {\n        printf(\"\\nFuncionario encontrado: %s (Salario: R$ %.2f)\\n\", \n               encontrado->nome, encontrado->salario);\n    } else {\n        printf(\"\\nFuncionario com ID %d nao encontrado.\\n\", idBusca);\n    }\n    \n    // Libera a mem�ria\n    while (lista != NULL) {\n        Funcionario* temp = lista;\n        lista = lista->proximo;\n        free(temp);\n    }\n    \n    return 0;\n}",
+  "testCases": [
+    {
+      "entrada": "",
+      "tipo": "padrao",
+      "saida": "Lista de Funcionarios (ordenada por salario):\nID: 2, Nome: Maria Santos, Salario: R$ 4200.75\nID: 3, Nome: Carlos Oliveira, Salario: R$ 3800.25\nID: 1, Nome: Joao Silva, Salario: R$ 3500.50\n\nFuncionario encontrado: Maria Santos (Salario: R$ 4200.75)\n"
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "executionTime": 107.1508,
+    "memoryUsage": 10.734138488769531
+  },
+  "results": [
+    {
+      "caseId": "case_1",
+      "status": "Compilation Error",
+      "input": "",
+      "expected": "Lista de Funcionarios (ordenada por salario):\nID: 2, Nome: Maria Santos, Salario: R$ 4200.75\nID: 3, Nome: Carlos Oliveira, Salario: R$ 3800.25\nID: 1, Nome: Joao Silva, Salario: R$ 3500.50\n\nFuncionario encontrado: Maria Santos (Salario: R$ 4200.75)\n",
+      "actual": "",
+      "executionTime": 107.1508,
+      "memoryUsage": 10.734138488769531
+    }
+  ]
+}

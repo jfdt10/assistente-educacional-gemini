@@ -1,0 +1,67 @@
+{
+  "submissionId": "batch_1760220991530",
+  "timestamp": "2025-10-11T22:16:31.530Z",
+  "language": "python",
+  "code": "X = int(input())\nY = int(input())\n\n# Garante que X seja o menor e Y o maior\nX, Y = min(X, Y), max(X, Y)\n\nsoma = 0\nfor c in range(X, Y + 1):\n    if c % 13 != 0:\n        soma += c\nprint(soma)",
+  "testCases": [
+    {
+      "entrada": "3\nspock spock\ntesoura spock\nlagarto spock",
+      "saida": "empate\\nsheldon\\nrajesh"
+    },
+    {
+      "entrada": "1\npapel pedra",
+      "saida": "rajesh"
+    },
+    {
+      "entrada": "1\npedra papel",
+      "saida": "sheldon"
+    },
+    {
+      "entrada": "1\ntesoura tesoura",
+      "saida": "empate"
+    },
+    {
+      "entrada": "1\ntesoura lagarto",
+      "saida": "rajesh"
+    },
+    {
+      "entrada": "1\npedra spock",
+      "saida": "sheldon"
+    },
+    {
+      "entrada": "1\nlagarto papel",
+      "saida": "rajesh"
+    },
+    {
+      "entrada": "1\nspock tesoura",
+      "saida": "sheldon"
+    },
+    {
+      "entrada": "1\npedra tesoura",
+      "saida": "rajesh"
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "executionTime": 304.3981,
+    "memoryUsage": 11.160812377929688
+  },
+  "results": [
+    {
+      "caseId": "case_1",
+      "status": "Runtime Error",
+      "verdict": "Runtime Error",
+      "input": "3\nspock spock\ntesoura spock\nlagarto spock",
+      "expected": "empate\\nsheldon\\nrajesh",
+      "actual": "",
+      "error": "Traceback (most recent call last):\r\n  File \"C:\\Users\\Jean\\AppData\\Local\\Temp\\judge-GHm0dk\\script.py\", line 2, in <module>\r\n    Y = int(input())\r\n        ^^^^^^^^^^^^\r\nValueError: invalid literal for int() with base 10: 'spock spock'\r\n",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 304.3981,
+      "memoryUsage": 11.160812377929688,
+      "timestamp": "2025-10-11T22:16:31.530Z"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "submissionId": "single_1760027973190",
+  "timestamp": "2025-10-09T16:39:33.190Z",
+  "language": "python",
+  "code": "entrada = input().split('\\n')\nX = int(entrada[0].strip())\nY = int(entrada[1].strip()) if len(entrada) > 1 else 0\n\nif X > Y:\n    X, Y = Y, X\n\nsoma = 0\nfor c in range(X, Y + 1):\n    if c % 13 != 0:\n        soma += c\n\nprint(soma)",
+  "testCases": [
+    {
+      "input": "100\\n200",
+      "expected": "13954",
+      "actual": "",
+      "status": "Runtime Error",
+      "executionTime": 96.0727
+    }
+  ],
+  "results": [
+    {
+      "status": "Runtime Error",
+      "output": "",
+      "error": "Traceback (most recent call last):\r\n  File \"C:\\Users\\Jean\\AppData\\Local\\Temp\\judge-Sn9sMN\\script.py\", line 2, in <module>\r\n    X = int(entrada[0].strip())\r\n        ^^^^^^^^^^^^^^^^^^^^^^^\r\nValueError: invalid literal for int() with base 10: '100\\\\n200'\r\n",
+      "executionTime": 96.0727,
+      "memoryUsage": 10.244071960449219,
+      "timestamp": "2025-10-09T16:39:33.190Z"
+    }
+  ]
+}

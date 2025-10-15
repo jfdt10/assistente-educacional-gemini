@@ -1,0 +1,81 @@
+{
+  "submissionId": "batch_1760477342420",
+  "timestamp": "2025-10-14T21:29:02.420Z",
+  "language": "python",
+  "code": "n = int(input())\n\nif 0 < n < 13:\n    resultadoFatorial = 1\n\nwhile n > 1:\n    resultadoFatorial *= n\n    n -= 1\n    \nprint(resultadoFatorial)",
+  "testCases": [
+    {
+      "entrada": "4",
+      "saida": "24"
+    },
+    {
+      "entrada": "0",
+      "saida": "1"
+    },
+    {
+      "entrada": "1",
+      "saida": "1"
+    },
+    {
+      "entrada": "2",
+      "saida": "2"
+    },
+    {
+      "entrada": "3",
+      "saida": "6"
+    },
+    {
+      "entrada": "5",
+      "saida": "120"
+    },
+    {
+      "entrada": "7",
+      "saida": "5040"
+    },
+    {
+      "entrada": "11",
+      "saida": "39916800"
+    },
+    {
+      "entrada": "12",
+      "saida": "479001600"
+    }
+  ],
+  "summary": {
+    "total": 2,
+    "passed": 1,
+    "failed": 1,
+    "executionTime": 404.2625,
+    "memoryUsage": 11.097152709960938
+  },
+  "results": [
+    {
+      "caseId": "case_1",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "4",
+      "expected": "24",
+      "actual": "24",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 215.0031,
+      "memoryUsage": 10.850578308105469,
+      "timestamp": "2025-10-14T21:29:02.420Z"
+    },
+    {
+      "caseId": "case_2",
+      "status": "Runtime Error",
+      "verdict": "Runtime Error",
+      "input": "0",
+      "expected": "1",
+      "actual": "",
+      "error": "Traceback (most recent call last):\r\n  File \"C:\\Users\\Jean\\AppData\\Local\\Temp\\judge-tnJidr\\script.py\", line 10, in <module>\r\n    print(resultadoFatorial)\r\n          ^^^^^^^^^^^^^^^^^\r\nNameError: name 'resultadoFatorial' is not defined\r\n",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 189.2594,
+      "memoryUsage": 11.097152709960938,
+      "timestamp": "2025-10-14T21:29:02.420Z"
+    }
+  ]
+}

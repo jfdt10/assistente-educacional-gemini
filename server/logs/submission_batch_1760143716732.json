@@ -1,0 +1,62 @@
+{
+  "submissionId": "batch_1760143716732",
+  "timestamp": "2025-10-11T00:48:36.732Z",
+  "language": "python",
+  "code": "C = int(input())\n\nfor c in range(C):\n    rajesh, sheldon = map(str, input().split())\n    \n    if sheldon == rajesh:\n        print('empate')\n    elif (\n    (sheldon == 'tesoura' and (rajesh == 'papel' or rajesh == 'lagarto')) or\n    (sheldon == 'papel' and (rajesh == 'pedra' or rajesh == 'spock')) or\n    (sheldon == 'pedra' and (rajesh == 'lagarto' or rajesh == 'tesoura')) or\n    (sheldon == 'lagarto' and (rajesh == 'spock' or rajesh == 'papel')) or\n    (sheldon == 'spock' and (rajesh == 'tesoura' or rajesh == 'pedra'))\n    ):\n        print('sheldon')\n    else:\n        print('rajesh')",
+  "testCases": [
+    {
+      "entrada": "3\\nspock spock\\ntesoura spock\\nlagarto spock",
+      "saida": "empate\\nsheldon\\nrajesh"
+    },
+    {
+      "entrada": "1\npapel pedra",
+      "saida": "rajesh"
+    },
+    {
+      "entrada": "1\npedra papel",
+      "saida": "sheldon"
+    },
+    {
+      "entrada": "1\ntesoura tesoura",
+      "saida": "empate"
+    },
+    {
+      "entrada": "1\nspock tesoura",
+      "saida": "rajesh"
+    },
+    {
+      "entrada": "1\nspock lagarto",
+      "saida": "sheldon"
+    },
+    {
+      "entrada": "3\npedra lagarto\npapel spock\ntesoura papel",
+      "saida": "rajesh\nrajesh\nrajesh"
+    },
+    {
+      "entrada": "4\npedra spock\nlagarto papel\nspock spock\ntesoura lagarto",
+      "saida": "sheldon\nrajesh\nempate\nrajesh"
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "executionTime": 80.1194,
+    "memoryUsage": 10.229972839355469
+  },
+  "results": [
+    {
+      "caseId": "case_1",
+      "status": "Runtime Error",
+      "verdict": "Runtime Error",
+      "input": "3\\nspock spock\\ntesoura spock\\nlagarto spock",
+      "expected": "empate\\nsheldon\\nrajesh",
+      "actual": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 80.1194,
+      "memoryUsage": 10.229972839355469,
+      "timestamp": "2025-10-11T00:48:36.733Z"
+    }
+  ]
+}

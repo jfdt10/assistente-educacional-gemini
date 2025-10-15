@@ -1,0 +1,289 @@
+{
+  "submissionId": "batch_1760478040868",
+  "timestamp": "2025-10-14T21:40:40.868Z",
+  "language": "python",
+  "code": "def vence(rajesh, sheldon):\n    regras = {\n        'tesoura': ['papel', 'lagarto'],\n        'papel': ['pedra', 'spock'],\n        'pedra': ['lagarto', 'tesoura'],\n        'lagarto': ['spock', 'papel'],\n        'spock': ['tesoura', 'pedra']\n    }\n    if rajesh == sheldon:\n        return \"empate\"\n    elif sheldon in regras[rajesh]:\n        return \"rajesh\"\n    else:\n        return \"sheldon\"\nC = int(input())\nfor _ in range(C):\n    rajesh, sheldon = input().split()\n    resultado = vence(rajesh, sheldon)\n    print(resultado)",
+  "testCases": [
+    {
+      "entrada": "3\nspock spock\ntesoura spock\nlagarto spock",
+      "saida": "empate\\nsheldon\\nrajesh"
+    },
+    {
+      "entrada": "1\ntesoura papel",
+      "saida": "rajesh"
+    },
+    {
+      "entrada": "1\nlagarto pedra",
+      "saida": "sheldon"
+    },
+    {
+      "entrada": "1\npedra pedra",
+      "saida": "empate"
+    },
+    {
+      "entrada": "1\nspock tesoura",
+      "saida": "rajesh"
+    },
+    {
+      "entrada": "1\nspock papel",
+      "saida": "sheldon"
+    },
+    {
+      "entrada": "1\ntesoura lagarto",
+      "saida": "rajesh"
+    },
+    {
+      "entrada": "1\npapel lagarto",
+      "saida": "sheldon"
+    },
+    {
+      "entrada": "1\npedra lagarto",
+      "saida": "rajesh"
+    },
+    {
+      "entrada": "1\npedra papel",
+      "saida": "sheldon"
+    },
+    {
+      "entrada": "1\ntesoura lagarto",
+      "saida": "rajesh"
+    },
+    {
+      "entrada": "1\nspock tesoura",
+      "saida": "sheldon"
+    },
+    {
+      "entrada": "5\npedra pedra\npapel papel\ntesoura tesoura\nlagarto lagarto\nspock spock",
+      "saida": "empate\nempate\nempate\nempate\nempate"
+    },
+    {
+      "entrada": "3\npapel spock\nlagarto pedra\ntesoura papel",
+      "saida": "rajesh\nsheldon\nrajesh"
+    },
+    {
+      "entrada": "2\nspock lagarto\npapel tesoura",
+      "saida": "sheldon\nsheldon"
+    },
+    {
+      "entrada": "1\npapel pedra",
+      "saida": "rajesh"
+    },
+    {
+      "entrada": "1\ntesoura spock",
+      "saida": "sheldon"
+    },
+    {
+      "entrada": "1\npedra pedra",
+      "saida": "empate"
+    },
+    {
+      "entrada": "1\nlagarto papel",
+      "saida": "rajesh"
+    },
+    {
+      "entrada": "1\nspock pedra",
+      "saida": "sheldon"
+    },
+    {
+      "entrada": "3\ntesoura papel\npedra lagarto\npapel spock",
+      "saida": "rajesh\nrajesh\nrajesh"
+    },
+    {
+      "entrada": "4\npedra papel\npapel spock\nlagarto tesoura\nspock pedra",
+      "saida": "sheldon\nsheldon\nsheldon\nsheldon"
+    }
+  ],
+  "summary": {
+    "total": 12,
+    "passed": 11,
+    "failed": 1,
+    "executionTime": 2305.6077999999998,
+    "memoryUsage": 10.860687255859375
+  },
+  "results": [
+    {
+      "caseId": "case_1",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "3\nspock spock\ntesoura spock\nlagarto spock",
+      "expected": "empate\nsheldon\nrajesh",
+      "actual": "empate\nsheldon\nrajesh",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 272.7953,
+      "memoryUsage": 10.184211730957031,
+      "timestamp": "2025-10-14T21:40:40.869Z"
+    },
+    {
+      "caseId": "case_2",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "1\ntesoura papel",
+      "expected": "rajesh",
+      "actual": "rajesh",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 179.2595,
+      "memoryUsage": 10.485160827636719,
+      "timestamp": "2025-10-14T21:40:40.869Z"
+    },
+    {
+      "caseId": "case_3",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "1\nlagarto pedra",
+      "expected": "sheldon",
+      "actual": "sheldon",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 172.444,
+      "memoryUsage": 10.145706176757812,
+      "timestamp": "2025-10-14T21:40:40.869Z"
+    },
+    {
+      "caseId": "case_4",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "1\npedra pedra",
+      "expected": "empate",
+      "actual": "empate",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 175.1874,
+      "memoryUsage": 10.411415100097656,
+      "timestamp": "2025-10-14T21:40:40.869Z"
+    },
+    {
+      "caseId": "case_5",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "1\nspock tesoura",
+      "expected": "rajesh",
+      "actual": "rajesh",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 175.0612,
+      "memoryUsage": 10.679275512695312,
+      "timestamp": "2025-10-14T21:40:40.869Z"
+    },
+    {
+      "caseId": "case_6",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "1\nspock papel",
+      "expected": "sheldon",
+      "actual": "sheldon",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 172.7394,
+      "memoryUsage": 10.239509582519531,
+      "timestamp": "2025-10-14T21:40:40.869Z"
+    },
+    {
+      "caseId": "case_7",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "1\ntesoura lagarto",
+      "expected": "rajesh",
+      "actual": "rajesh",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 192.8062,
+      "memoryUsage": 10.488349914550781,
+      "timestamp": "2025-10-14T21:40:40.869Z"
+    },
+    {
+      "caseId": "case_8",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "1\npapel lagarto",
+      "expected": "sheldon",
+      "actual": "sheldon",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 176.8197,
+      "memoryUsage": 10.732559204101562,
+      "timestamp": "2025-10-14T21:40:40.869Z"
+    },
+    {
+      "caseId": "case_9",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "1\npedra lagarto",
+      "expected": "rajesh",
+      "actual": "rajesh",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 190.6681,
+      "memoryUsage": 10.347953796386719,
+      "timestamp": "2025-10-14T21:40:40.869Z"
+    },
+    {
+      "caseId": "case_10",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "1\npedra papel",
+      "expected": "sheldon",
+      "actual": "sheldon",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 195.2009,
+      "memoryUsage": 10.606201171875,
+      "timestamp": "2025-10-14T21:40:40.869Z"
+    },
+    {
+      "caseId": "case_11",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "1\ntesoura lagarto",
+      "expected": "rajesh",
+      "actual": "rajesh",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 209.9184,
+      "memoryUsage": 10.860687255859375,
+      "timestamp": "2025-10-14T21:40:40.869Z"
+    },
+    {
+      "caseId": "case_12",
+      "status": "Success",
+      "verdict": "Wrong Answer",
+      "input": "1\nspock tesoura",
+      "expected": "sheldon",
+      "actual": "rajesh",
+      "error": "",
+      "errorType": "content_mismatch",
+      "diff": [
+        {
+          "position": 0,
+          "expected": "s",
+          "actual": "r"
+        },
+        {
+          "position": 1,
+          "expected": "h",
+          "actual": "a"
+        },
+        {
+          "position": 2,
+          "expected": "e",
+          "actual": "j"
+        }
+      ],
+      "executionTime": 192.7077,
+      "memoryUsage": 10.414230346679688,
+      "timestamp": "2025-10-14T21:40:40.869Z"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "submissionId": "b41ff52c-38b0-468d-9548-2b9a01a66ff7",
+  "timestamp": "2025-10-06T21:51:08.181Z",
+  "questionId": "soma_simples",
+  "language": "python",
+  "code": "a, b = map(int, input().split())\nprint(a + b)",
+  "testCases": [
+    {
+      "entrada": "1 2",
+      "saida": "3",
+      "tipo": "padrao"
+    },
+    {
+      "entrada": "10 20",
+      "saida": "30",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "0 0",
+      "saida": "0",
+      "tipo": "edge_case"
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "executionTime": 169.1963,
+    "memoryUsage": 10.48370361328125
+  },
+  "results": [
+    {
+      "caseId": "case_1",
+      "status": "Runtime Error",
+      "input": "1 2",
+      "expected": "3",
+      "actual": "",
+      "executionTime": 169.1963,
+      "memoryUsage": 10.48370361328125
+    }
+  ]
+}

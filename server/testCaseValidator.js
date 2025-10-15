@@ -12,7 +12,7 @@ const testCaseSchema = {
             saida: { type: 'string' },
             tipo: { 
                 type: 'string',
-                enum: ['gerado', 'exemplo', 'edge_case', 'boundary']
+                enum: ['gerado', 'padrao', 'edge_case', 'boundary']
             },
             descricao: { type: 'string' }
         }

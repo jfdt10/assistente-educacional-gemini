@@ -1,0 +1,25 @@
+{
+  "submissionId": "single_1760028000558",
+  "timestamp": "2025-10-09T16:40:00.558Z",
+  "language": "python",
+  "code": "# Lê a primeira linha\nX = int(input().strip())\n\n# Tenta ler a segunda linha, se não existir, usa 0\ntry:\n    Y = int(input().strip())\nexcept EOFError:\n    Y = 0\n\nif X > Y:\n    X, Y = Y, X\n\nsoma = 0\nfor c in range(X, Y + 1):\n    if c % 13 != 0:\n        soma += c\n\nprint(soma)",
+  "testCases": [
+    {
+      "input": "100\\n200",
+      "expected": "13954",
+      "actual": "",
+      "status": "Runtime Error",
+      "executionTime": 88.9516
+    }
+  ],
+  "results": [
+    {
+      "status": "Runtime Error",
+      "output": "",
+      "error": "Traceback (most recent call last):\r\n  File \"C:\\Users\\Jean\\AppData\\Local\\Temp\\judge-KVeaRC\\script.py\", line 2, in <module>\r\n    X = int(input().strip())\r\n        ^^^^^^^^^^^^^^^^^^^^\r\nValueError: invalid literal for int() with base 10: '100\\\\n200'\r\n",
+      "executionTime": 88.9516,
+      "memoryUsage": 10.518341064453125,
+      "timestamp": "2025-10-09T16:40:00.558Z"
+    }
+  ]
+}

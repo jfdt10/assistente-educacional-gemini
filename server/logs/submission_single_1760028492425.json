@@ -1,0 +1,35 @@
+{
+  "submissionId": "single_1760028492425",
+  "timestamp": "2025-10-09T16:48:12.425Z",
+  "language": "python",
+  "code": "X = int(input())\nY = int(input())\nif X > Y:\n    X, Y = Y, X\nsoma = 0\nfor c in range(X, Y+1):\n    if c % 13 != 0:\n        soma += c\nprint(soma)",
+  "testCases": [
+    {
+      "input": "100\n200",
+      "expected": "13954",
+      "actual": "13954\r\n",
+      "status": "Accepted",
+      "executionTime": 69.3196
+    }
+  ],
+  "results": [
+    {
+      "status": "Success",
+      "output": "13954\r\n",
+      "error": "",
+      "executionTime": 69.3196,
+      "memoryUsage": 9.798683166503906,
+      "timestamp": "2025-10-09T16:48:12.424Z",
+      "verdict": "Accepted",
+      "comparison": {
+        "match": true,
+        "actual": "13954\r\n",
+        "expected": "13954",
+        "normalized": {
+          "actual": "13954\r\n",
+          "expected": "13954"
+        }
+      }
+    }
+  ]
+}

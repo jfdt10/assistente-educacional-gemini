@@ -1,0 +1,71 @@
+{
+  "submissionId": "batch_1760388008347",
+  "timestamp": "2025-10-13T20:40:08.347Z",
+  "language": "python",
+  "code": "N = int(input())\nT = list(map(int, input().split()))\n\n# Loop infinito (nunca termina)\nwhile True:\n    pass\n\nprint(T.index(min(T)) + 1)",
+  "testCases": [
+    {
+      "entrada": "3\n8 0 7",
+      "saida": "2"
+    },
+    {
+      "entrada": "2\n1 1",
+      "saida": "1"
+    },
+    {
+      "entrada": "4\n5 2 9 1",
+      "saida": "4"
+    },
+    {
+      "entrada": "5\n10 3 15 7 20",
+      "saida": "2"
+    },
+    {
+      "entrada": "1\n100",
+      "saida": "1"
+    },
+    {
+      "entrada": "3\n5 5 5",
+      "saida": "1"
+    },
+    {
+      "entrada": "4\n0 8 2 7",
+      "saida": "1"
+    },
+    {
+      "entrada": "5\n5 2 8 2 1",
+      "saida": "5"
+    },
+    {
+      "entrada": "6\n10 5 20 5 30 5",
+      "saida": "2"
+    },
+    {
+      "entrada": "7\n100 20 50 10 30 60 70",
+      "saida": "4"
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "executionTime": 5169.984,
+    "memoryUsage": 11.10211181640625
+  },
+  "results": [
+    {
+      "caseId": "case_1",
+      "status": "Time Limit Exceeded",
+      "verdict": "Time Limit Exceeded",
+      "input": "3\n8 0 7",
+      "expected": "2",
+      "actual": "",
+      "error": "Processo excedeu 5s",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 5169.984,
+      "memoryUsage": 11.10211181640625,
+      "timestamp": "2025-10-13T20:40:08.347Z"
+    }
+  ]
+}

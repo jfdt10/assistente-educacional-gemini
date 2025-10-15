@@ -1,0 +1,287 @@
+{
+  "submissionId": "batch_1760476809300",
+  "timestamp": "2025-10-14T21:20:09.300Z",
+  "language": "python",
+  "code": "N = int(input())\nfatorial = 1\nfor c in range(N, 0, -1):\n    fatorial *= c\nprint('{}'.format(fatorial))",
+  "testCases": [
+    {
+      "entrada": "4",
+      "saida": "24"
+    },
+    {
+      "entrada": "0",
+      "saida": "1"
+    },
+    {
+      "entrada": "1",
+      "saida": "1"
+    },
+    {
+      "entrada": "2",
+      "saida": "2"
+    },
+    {
+      "entrada": "3",
+      "saida": "6"
+    },
+    {
+      "entrada": "5",
+      "saida": "120"
+    },
+    {
+      "entrada": "7",
+      "saida": "5040"
+    },
+    {
+      "entrada": "10",
+      "saida": "3628800"
+    },
+    {
+      "entrada": "0",
+      "saida": "1"
+    },
+    {
+      "entrada": "1",
+      "saida": "1"
+    },
+    {
+      "entrada": "2",
+      "saida": "2"
+    },
+    {
+      "entrada": "3",
+      "saida": "6"
+    },
+    {
+      "entrada": "5",
+      "saida": "120"
+    },
+    {
+      "entrada": "7",
+      "saida": "5040"
+    },
+    {
+      "entrada": "8",
+      "saida": "40320"
+    }
+  ],
+  "summary": {
+    "total": 15,
+    "passed": 15,
+    "failed": 0,
+    "executionTime": 2680.0482,
+    "memoryUsage": 10.698318481445312
+  },
+  "results": [
+    {
+      "caseId": "case_1",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "4",
+      "expected": "24",
+      "actual": "24",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 278.3504,
+      "memoryUsage": 9.815620422363281,
+      "timestamp": "2025-10-14T21:20:09.300Z"
+    },
+    {
+      "caseId": "case_2",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "0",
+      "expected": "1",
+      "actual": "1",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 175.7481,
+      "memoryUsage": 10.129119873046875,
+      "timestamp": "2025-10-14T21:20:09.300Z"
+    },
+    {
+      "caseId": "case_3",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "1",
+      "expected": "1",
+      "actual": "1",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 173.1624,
+      "memoryUsage": 9.931785583496094,
+      "timestamp": "2025-10-14T21:20:09.300Z"
+    },
+    {
+      "caseId": "case_4",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "2",
+      "expected": "2",
+      "actual": "2",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 173.9749,
+      "memoryUsage": 10.202308654785156,
+      "timestamp": "2025-10-14T21:20:09.300Z"
+    },
+    {
+      "caseId": "case_5",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "3",
+      "expected": "6",
+      "actual": "6",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 182.6219,
+      "memoryUsage": 10.476219177246094,
+      "timestamp": "2025-10-14T21:20:09.300Z"
+    },
+    {
+      "caseId": "case_6",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "5",
+      "expected": "120",
+      "actual": "120",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 179.0652,
+      "memoryUsage": 10.044273376464844,
+      "timestamp": "2025-10-14T21:20:09.300Z"
+    },
+    {
+      "caseId": "case_7",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "7",
+      "expected": "5040",
+      "actual": "5040",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 166.2535,
+      "memoryUsage": 10.30242919921875,
+      "timestamp": "2025-10-14T21:20:09.300Z"
+    },
+    {
+      "caseId": "case_8",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "10",
+      "expected": "3628800",
+      "actual": "3628800",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 174.3389,
+      "memoryUsage": 10.551177978515625,
+      "timestamp": "2025-10-14T21:20:09.300Z"
+    },
+    {
+      "caseId": "case_9",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "0",
+      "expected": "1",
+      "actual": "1",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 166.3652,
+      "memoryUsage": 10.137504577636719,
+      "timestamp": "2025-10-14T21:20:09.300Z"
+    },
+    {
+      "caseId": "case_10",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "1",
+      "expected": "1",
+      "actual": "1",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 173.5166,
+      "memoryUsage": 10.395408630371094,
+      "timestamp": "2025-10-14T21:20:09.300Z"
+    },
+    {
+      "caseId": "case_11",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "2",
+      "expected": "2",
+      "actual": "2",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 170.8538,
+      "memoryUsage": 10.637535095214844,
+      "timestamp": "2025-10-14T21:20:09.300Z"
+    },
+    {
+      "caseId": "case_12",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "3",
+      "expected": "6",
+      "actual": "6",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 164.9941,
+      "memoryUsage": 10.208251953125,
+      "timestamp": "2025-10-14T21:20:09.300Z"
+    },
+    {
+      "caseId": "case_13",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "5",
+      "expected": "120",
+      "actual": "120",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 168.6223,
+      "memoryUsage": 10.456588745117188,
+      "timestamp": "2025-10-14T21:20:09.300Z"
+    },
+    {
+      "caseId": "case_14",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "7",
+      "expected": "5040",
+      "actual": "5040",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 164.9245,
+      "memoryUsage": 10.698318481445312,
+      "timestamp": "2025-10-14T21:20:09.300Z"
+    },
+    {
+      "caseId": "case_15",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "8",
+      "expected": "40320",
+      "actual": "40320",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 167.2564,
+      "memoryUsage": 10.277664184570312,
+      "timestamp": "2025-10-14T21:20:09.300Z"
+    }
+  ]
+}

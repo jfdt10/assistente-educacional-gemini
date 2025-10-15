@@ -1,0 +1,25 @@
+{
+  "submissionId": "single_1760029058587",
+  "timestamp": "2025-10-09T16:57:38.587Z",
+  "language": "python",
+  "code": "X = int(input())\nY = int(input())\n\nif X > Y:\n    X, Y = Y, X\n    \nsoma = 0\nfor c in range(X, Y+1):\n    if c % 13 != 0:\n        soma += c\nprint(soma)",
+  "testCases": [
+    {
+      "input": "100\\n200",
+      "expected": "13954",
+      "actual": "",
+      "status": "Runtime Error",
+      "executionTime": 115.9511
+    }
+  ],
+  "results": [
+    {
+      "status": "Runtime Error",
+      "output": "",
+      "error": "Traceback (most recent call last):\r\n  File \"C:\\Users\\Jean\\AppData\\Local\\Temp\\judge-5h1BCi\\script.py\", line 1, in <module>\r\n    X = int(input())\r\n        ^^^^^^^^^^^^\r\nValueError: invalid literal for int() with base 10: '100\\\\n200'\r\n",
+      "executionTime": 115.9511,
+      "memoryUsage": 10.159072875976562,
+      "timestamp": "2025-10-09T16:57:38.587Z"
+    }
+  ]
+}

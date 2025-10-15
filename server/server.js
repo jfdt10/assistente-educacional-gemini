@@ -4,7 +4,15 @@ const path = require('path');
 const cors = require('cors');
 const csvParser = require('csv-parser');
 const { createObjectCsvWriter } = require('csv-writer');
-const { executeCode, TestCaseValidator, ReportGenerator } = require('./judge');
+const { executeCode, TestCaseValidator, ReportGenerator, OutputComparator } = require('./judge');
+const Validator = require('./validator');
+
+// Helper: converte sequências escapadas em caracteres reais ("100\\n200" -> "100\n200")
+function unescapeInput(str) {
+    if (typeof str !== 'string') return str;
+    if (str.indexOf('\\n') === -1 && str.indexOf('\\r') === -1 && str.indexOf('\\t') === -1) return str;
+    return str.replace(/\\r\\n/g, '\\r\\n').replace(/\\n/g, '\n').replace(/\\r/g, '\r').replace(/\\t/g, '\t');
+}
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -119,16 +127,16 @@ app.post('/cases', async (req, res) => {
 });
 
 // Executa um único caso de teste
-app.post('/execute', async (req, res) => {
+app.post('/execute', 
+    Validator.createMiddleware(Validator.validateExecuteRequest),
+    async (req, res) => {
     const { language, code, input, expected_output } = req.body;
-    
-    if (!code) {
-        return res.status(400).json({ error: 'Campo "code" é obrigatório.' });
-    }
 
     try {
         const startTime = process.hrtime();
-        const result = await executeCode(language, code, input);
+    const sanitizedInput = unescapeInput(input);
+    const sanitizedExpectedOutput = expected_output !== undefined ? unescapeInput(expected_output) : undefined;
+    const result = await executeCode(language, code, sanitizedInput);
         const [seconds, ns] = process.hrtime(startTime);
         const executionTime = (seconds * 1000) + (ns / 1e6); // ms
 
@@ -139,10 +147,10 @@ app.post('/execute', async (req, res) => {
             timestamp: new Date().toISOString()
         };
 
-        if (result.status === 'Success' && expected_output !== undefined) {
-            response.verdict = result.output.trim() === expected_output.trim() 
-                ? 'Accepted' 
-                : 'Wrong Answer';
+        if (result.status === 'Success' && sanitizedExpectedOutput !== undefined) {
+            const comparison = OutputComparator.compare(result.output, sanitizedExpectedOutput);
+            response.verdict = comparison.match ? 'Accepted' : 'Wrong Answer';
+            response.comparison = comparison;
         }
 
         // Salva o log da execução
@@ -153,7 +161,7 @@ app.post('/execute', async (req, res) => {
             code,
             testCases: [{
                 input,
-                expected: expected_output,
+                expected: sanitizedExpectedOutput,
                 actual: result.output,
                 status: response.verdict || result.status,
                 executionTime
@@ -173,21 +181,10 @@ app.post('/execute', async (req, res) => {
 });
 
 // Executa múltiplos casos de teste
-app.post('/execute-batch', async (req, res) => {
+app.post('/execute-batch',
+    Validator.createMiddleware(Validator.validateBatchRequest.bind(Validator)),
+    async (req, res) => {
     const { language, code, testCases = [], questionId } = req.body;
-    
-    if (!code) {
-        return res.status(400).json({ error: 'Campo "code" é obrigatório.' });
-    }
-
-    // Valida os casos de teste
-    const validation = TestCaseValidator.validate(testCases);
-    if (!validation.isValid) {
-        return res.status(400).json({
-            error: 'Casos de teste inválidos',
-            details: TestCaseValidator.getErrorMessage(validation.errors)
-        });
-    }
 
     const results = [];
     const startTime = process.hrtime();
@@ -196,21 +193,24 @@ app.post('/execute-batch', async (req, res) => {
         // Executa cada caso de teste
         for (const [index, testCase] of testCases.entries()) {
             const caseStartTime = process.hrtime();
-            const result = await executeCode(language, code, testCase.entrada);
+            // Ensure escaped sequences are converted to real newlines before execution
+            const caseInput = unescapeInput(testCase.entrada);
+            const expectedOutput = unescapeInput(testCase.saida);
+            const result = await executeCode(language, code, caseInput);
             const [seconds, ns] = process.hrtime(caseStartTime);
             const executionTime = (seconds * 1000) + (ns / 1e6); // ms
-
             const testResult = {
                 caseId: testCase.id || `case_${index + 1}`,
                 input: testCase.entrada,
-                expected: testCase.saida,
+                expected: expectedOutput,
                 actual: result.output,
                 status: result.status,
+                error: result.error || '', // Inclui a mensagem de erro
                 executionTime,
                 memoryUsage: process.memoryUsage().heapUsed / (1024 * 1024), // MB
-                verdict: result.status === 'Success' && result.output.trim() === testCase.saida.trim()
-                    ? 'Accepted'
-                    : result.status === 'Success' ? 'Wrong Answer' : result.status
+                verdict: result.status === 'Success' && OutputComparator.compareSimple(result.output, expectedOutput)
+                ? 'Accepted' 
+                : result.status === 'Success' ? 'Wrong Answer' : result.status
             };
 
             results.push(testResult);

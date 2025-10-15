@@ -1,0 +1,83 @@
+{
+  "submissionId": "batch_1760221723018",
+  "timestamp": "2025-10-11T22:28:43.018Z",
+  "language": "python",
+  "code": "import sys\n\ndef vence(rajesh, sheldon):\n    regras = {\n        'tesoura': ['papel', 'lagarto'],\n        'papel': ['pedra', 'spock'],\n        'pedra': ['lagarto', 'tesoura'],\n        'lagarto': ['spock', 'papel'],\n        'spock': ['tesoura', 'pedra']\n    }\n    rajesh = rajesh.strip().lower()\n    sheldon = sheldon.strip().lower()\n\n    if rajesh == sheldon:\n        return \"empate\"\n    if sheldon in regras.get(rajesh, []):\n        return \"rajesh\"\n    return \"sheldon\"\n\ndef main():\n    data = sys.stdin.read().strip().split()\n    if not data:\n        return\n    try:\n        C = int(data[0])\n    except:\n        return\n\n    idx = 1\n    for _ in range(C):\n        if idx >= len(data):\n            break\n        rajesh = data[idx]\n        sheldon = data[idx+1] if idx+1 < len(data) else ''\n        idx += 2\n        print(vence(rajesh, sheldon))\n\nif __name__ == \"__main__\":\n    main()",
+  "testCases": [
+    {
+      "entrada": "3\nspock spock\ntesoura spock\nlagarto spock",
+      "saida": "empate\\nsheldon\\nrajesh"
+    },
+    {
+      "entrada": "1\ntesoura papel",
+      "saida": "rajesh"
+    },
+    {
+      "entrada": "1\npapel tesoura",
+      "saida": "sheldon"
+    },
+    {
+      "entrada": "1\npedra pedra",
+      "saida": "empate"
+    },
+    {
+      "entrada": "1\nspock pedra",
+      "saida": "rajesh"
+    },
+    {
+      "entrada": "1\nspock lagarto",
+      "saida": "sheldon"
+    },
+    {
+      "entrada": "1\npapel spock",
+      "saida": "rajesh"
+    },
+    {
+      "entrada": "1\nlagarto tesoura",
+      "saida": "sheldon"
+    },
+    {
+      "entrada": "4\npedra papel\ntesoura tesoura\nlagarto spock\nspock papel",
+      "saida": "sheldon\nempate\nrajesh\nsheldon"
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "executionTime": 210.6453,
+    "memoryUsage": 9.773063659667969
+  },
+  "results": [
+    {
+      "caseId": "case_1",
+      "status": "Success",
+      "verdict": "Wrong Answer",
+      "input": "3\nspock spock\ntesoura spock\nlagarto spock",
+      "expected": "empate\\nsheldon\\nrajesh",
+      "actual": "empate\r\nsheldon\r\nrajesh\r\n",
+      "error": "",
+      "errorType": "content_mismatch",
+      "diff": [
+        {
+          "position": 6,
+          "expected": "\\",
+          "actual": "\r"
+        },
+        {
+          "position": 7,
+          "expected": "n",
+          "actual": "\n"
+        },
+        {
+          "position": 15,
+          "expected": "\\",
+          "actual": "\r"
+        }
+      ],
+      "executionTime": 210.6453,
+      "memoryUsage": 9.773063659667969,
+      "timestamp": "2025-10-11T22:28:43.019Z"
+    }
+  ]
+}

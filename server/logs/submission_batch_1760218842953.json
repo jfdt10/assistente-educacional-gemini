@@ -1,0 +1,143 @@
+{
+  "submissionId": "batch_1760218842953",
+  "timestamp": "2025-10-11T21:40:42.953Z",
+  "language": "python",
+  "code": "X = int(input())\nY = int(input())\n\nsoma = 0\nfor c in range(X, Y + 1):\n    if c % 13 != 0:\n        soma += c\nprint(soma)",
+  "testCases": [
+    {
+      "entrada": "100\n200",
+      "saida": "13954"
+    },
+    {
+      "entrada": "1\n5",
+      "saida": "15"
+    },
+    {
+      "entrada": "5\n1",
+      "saida": "15"
+    },
+    {
+      "entrada": "10\n10",
+      "saida": "10"
+    },
+    {
+      "entrada": "13\n13",
+      "saida": "0"
+    },
+    {
+      "entrada": "-20\n-10",
+      "saida": "-152"
+    },
+    {
+      "entrada": "1\n30",
+      "saida": "426"
+    },
+    {
+      "entrada": "14\n25",
+      "saida": "234"
+    },
+    {
+      "entrada": "-10\n15",
+      "saida": "52"
+    },
+    {
+      "entrada": "1\n10",
+      "saida": "55"
+    },
+    {
+      "entrada": "13\n20",
+      "saida": "119"
+    },
+    {
+      "entrada": "20\n13",
+      "saida": "119"
+    },
+    {
+      "entrada": "15\n15",
+      "saida": "15"
+    },
+    {
+      "entrada": "13\n13",
+      "saida": "0"
+    },
+    {
+      "entrada": "-10\n0",
+      "saida": "-55"
+    },
+    {
+      "entrada": "-20\n20",
+      "saida": "0"
+    },
+    {
+      "entrada": "26\n39",
+      "saida": "390"
+    }
+  ],
+  "summary": {
+    "total": 3,
+    "passed": 2,
+    "failed": 1,
+    "executionTime": 753.9187000000001,
+    "memoryUsage": 11.170059204101562
+  },
+  "results": [
+    {
+      "caseId": "case_1",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "100\n200",
+      "expected": "13954",
+      "actual": "13954\r\n",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 281.5378,
+      "memoryUsage": 10.720909118652344,
+      "timestamp": "2025-10-11T21:40:42.953Z"
+    },
+    {
+      "caseId": "case_2",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "1\n5",
+      "expected": "15",
+      "actual": "15\r\n",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 247.9571,
+      "memoryUsage": 10.942169189453125,
+      "timestamp": "2025-10-11T21:40:42.953Z"
+    },
+    {
+      "caseId": "case_3",
+      "status": "Success",
+      "verdict": "Wrong Answer",
+      "input": "5\n1",
+      "expected": "15",
+      "actual": "0\r\n",
+      "error": "",
+      "errorType": "numeric_value",
+      "diff": [
+        {
+          "position": 0,
+          "expected": "1",
+          "actual": "0"
+        },
+        {
+          "position": 1,
+          "expected": "5",
+          "actual": "\r"
+        },
+        {
+          "position": 2,
+          "expected": "",
+          "actual": "\n"
+        }
+      ],
+      "executionTime": 224.4238,
+      "memoryUsage": 11.170059204101562,
+      "timestamp": "2025-10-11T21:40:42.953Z"
+    }
+  ]
+}

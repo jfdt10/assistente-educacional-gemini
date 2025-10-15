@@ -1,0 +1,35 @@
+{
+  "submissionId": "batch_1760020805751",
+  "timestamp": "2025-10-09T14:40:05.751Z",
+  "language": "c",
+  "code": "int main() { printf(\"Valor: 4.200,75\"); return 0; }",
+  "testCases": [
+    {
+      "entrada": "",
+      "tipo": "padrao",
+      "saida": "Valor: 4200.75"
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "executionTime": 305.0788,
+    "memoryUsage": 9.754692077636719
+  },
+  "results": [
+    {
+      "caseId": "case_1",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "",
+      "expected": "Valor: 4200.75",
+      "actual": "Valor: 4.200,75",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 305.0788,
+      "memoryUsage": 9.754692077636719,
+      "timestamp": "2025-10-09T14:40:05.752Z"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "submissionId": "batch_1760221038419",
+  "timestamp": "2025-10-11T22:17:18.419Z",
+  "language": "python",
+  "code": "C = input()\n\nfor c in range(C):\n    rajesh, sheldon = map(str, input().split())\n    \n    if sheldon == rajesh:\n        print('empate')\n    elif (\n    (sheldon == 'tesoura' and (rajesh == 'papel' or rajesh == 'lagarto')) or\n    (sheldon == 'papel' and (rajesh == 'pedra' or rajesh == 'spock')) or\n    (sheldon == 'pedra' and (rajesh == 'lagarto' or rajesh == 'tesoura')) or\n    (sheldon == 'lagarto' and (rajesh == 'spock' or rajesh == 'papel')) or\n    (sheldon == 'spock' and (rajesh == 'tesoura' or rajesh == 'pedra'))\n    ):\n        print('sheldon')\n    else:\n        print('rajesh')",
+  "testCases": [
+    {
+      "entrada": "3\nspock spock\ntesoura spock\nlagarto spock",
+      "saida": "empate\\nsheldon\\nrajesh"
+    },
+    {
+      "entrada": "1\npapel pedra",
+      "saida": "rajesh"
+    },
+    {
+      "entrada": "1\npedra papel",
+      "saida": "sheldon"
+    },
+    {
+      "entrada": "1\ntesoura tesoura",
+      "saida": "empate"
+    },
+    {
+      "entrada": "1\ntesoura lagarto",
+      "saida": "rajesh"
+    },
+    {
+      "entrada": "1\npedra spock",
+      "saida": "sheldon"
+    },
+    {
+      "entrada": "1\nlagarto papel",
+      "saida": "rajesh"
+    },
+    {
+      "entrada": "1\nspock tesoura",
+      "saida": "sheldon"
+    },
+    {
+      "entrada": "1\npedra tesoura",
+      "saida": "rajesh"
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "executionTime": 285.9245,
+    "memoryUsage": 11.488838195800781
+  },
+  "results": [
+    {
+      "caseId": "case_1",
+      "status": "Runtime Error",
+      "verdict": "Runtime Error",
+      "input": "3\nspock spock\ntesoura spock\nlagarto spock",
+      "expected": "empate\\nsheldon\\nrajesh",
+      "actual": "",
+      "error": "Traceback (most recent call last):\r\n  File \"C:\\Users\\Jean\\AppData\\Local\\Temp\\judge-bpUnV9\\script.py\", line 3, in <module>\r\n    for c in range(C):\r\n             ^^^^^^^^\r\nTypeError: 'str' object cannot be interpreted as an integer\r\n",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 285.9245,
+      "memoryUsage": 11.488838195800781,
+      "timestamp": "2025-10-11T22:17:18.419Z"
+    }
+  ]
+}

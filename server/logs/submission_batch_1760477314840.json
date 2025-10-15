@@ -1,0 +1,67 @@
+{
+  "submissionId": "batch_1760477314840",
+  "timestamp": "2025-10-14T21:28:34.840Z",
+  "language": "python",
+  "code": "n = int(input())\n\nif 0 < n < 13:\n    resultadoFatorial = 1\n\nwhile n > 1\n    resultadoFatorial *= n\n    n -= 1\n    \nprint(resultadoFatorial)",
+  "testCases": [
+    {
+      "entrada": "4",
+      "saida": "24"
+    },
+    {
+      "entrada": "0",
+      "saida": "1"
+    },
+    {
+      "entrada": "1",
+      "saida": "1"
+    },
+    {
+      "entrada": "2",
+      "saida": "2"
+    },
+    {
+      "entrada": "3",
+      "saida": "6"
+    },
+    {
+      "entrada": "5",
+      "saida": "120"
+    },
+    {
+      "entrada": "7",
+      "saida": "5040"
+    },
+    {
+      "entrada": "11",
+      "saida": "39916800"
+    },
+    {
+      "entrada": "12",
+      "saida": "479001600"
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "executionTime": 203.2406,
+    "memoryUsage": 11.182090759277344
+  },
+  "results": [
+    {
+      "caseId": "case_1",
+      "status": "Runtime Error",
+      "verdict": "Runtime Error",
+      "input": "4",
+      "expected": "24",
+      "actual": "",
+      "error": "  File \"C:\\Users\\Jean\\AppData\\Local\\Temp\\judge-fiMviq\\script.py\", line 6\r\n    while n > 1\r\n               ^\r\nSyntaxError: expected ':'\r\n",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 203.2406,
+      "memoryUsage": 11.182090759277344,
+      "timestamp": "2025-10-14T21:28:34.840Z"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "submissionId": "single_1759785717960",
+  "timestamp": "2025-10-06T21:21:57.960Z",
+  "language": "python",
+  "code": "print(sum(map(int, input().split())))",
+  "testCases": [
+    {
+      "input": "1 2 3",
+      "expected": "6",
+      "actual": "",
+      "status": "Runtime Error",
+      "executionTime": 9.0287
+    }
+  ],
+  "results": [
+    {
+      "status": "Runtime Error",
+      "output": "",
+      "error": "Cannot destructure property 'command' of '(intermediate value)' as it is undefined.",
+      "executionTime": 9.0287,
+      "memoryUsage": 9.387603759765625,
+      "timestamp": "2025-10-06T21:21:57.960Z"
+    }
+  ]
+}

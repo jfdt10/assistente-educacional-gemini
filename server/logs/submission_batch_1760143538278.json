@@ -1,0 +1,94 @@
+{
+  "submissionId": "batch_1760143538278",
+  "timestamp": "2025-10-11T00:45:38.278Z",
+  "language": "python",
+  "code": "X = int(input())\nY = int(input())\n\nif X > Y:\n    X, Y = Y, X\n    \nsoma = 0\nfor c in range(X, Y+1):\n    if c % 13 != 0:\n        soma += c\nprint(soma)",
+  "testCases": [
+    {
+      "entrada": "100\\n200",
+      "saida": "13954"
+    },
+    {
+      "entrada": "1\n20",
+      "saida": "197"
+    },
+    {
+      "entrada": "20\n1",
+      "saida": "197"
+    },
+    {
+      "entrada": "12\n14",
+      "saida": "26"
+    },
+    {
+      "entrada": "1\n12",
+      "saida": "78"
+    },
+    {
+      "entrada": "14\n14",
+      "saida": "14"
+    },
+    {
+      "entrada": "-20\n-1",
+      "saida": "-197"
+    },
+    {
+      "entrada": "1000\n1013",
+      "saida": "13090"
+    },
+    {
+      "entrada": "1\n5",
+      "saida": "15"
+    },
+    {
+      "entrada": "10\n20",
+      "saida": "152"
+    },
+    {
+      "entrada": "20\n10",
+      "saida": "152"
+    },
+    {
+      "entrada": "13\n13",
+      "saida": "0"
+    },
+    {
+      "entrada": "10\n10",
+      "saida": "10"
+    },
+    {
+      "entrada": "-10\n-1",
+      "saida": "-55"
+    },
+    {
+      "entrada": "-15\n15",
+      "saida": "0"
+    },
+    {
+      "entrada": "12\n14",
+      "saida": "26"
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "executionTime": 298.4972,
+    "memoryUsage": 9.650367736816406
+  },
+  "results": [
+    {
+      "caseId": "case_1",
+      "status": "Runtime Error",
+      "verdict": "Runtime Error",
+      "input": "100\\n200",
+      "expected": "13954",
+      "actual": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 298.4972,
+      "memoryUsage": 9.650367736816406,
+      "timestamp": "2025-10-11T00:45:38.279Z"
+    }
+  ]
+}

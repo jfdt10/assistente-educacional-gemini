@@ -1,0 +1,32 @@
+{
+  "submissionId": "6dc2aa03-2edf-4ca0-bc53-b2d93cdcc6c2",
+  "timestamp": "2025-10-06T21:30:58.527Z",
+  "questionId": "teste_js",
+  "language": "javascript",
+  "code": "console.log(1+2+3)",
+  "testCases": [
+    {
+      "entrada": "",
+      "saida": "6",
+      "tipo": "padrao"
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "executionTime": 13.2525,
+    "memoryUsage": 10.215049743652344
+  },
+  "results": [
+    {
+      "caseId": "case_1",
+      "status": "Runtime Error",
+      "input": "",
+      "expected": "6",
+      "actual": "",
+      "executionTime": 13.2525,
+      "memoryUsage": 10.215049743652344
+    }
+  ]
+}

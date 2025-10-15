@@ -1,0 +1,209 @@
+{
+  "submissionId": "batch_1760453780149",
+  "timestamp": "2025-10-14T14:56:20.149Z",
+  "language": "python",
+  "code": "N = int(input())\n\nif 0 < N < 13:\n    resultado_fatorial = 1\n\n    for i in range(2, N + 1):\n        resultado_fatorial *= i\n\n    print(resultado_fatorial)\nelse:\n    print(\"Por favor, insira um valor válido para N.\")",
+  "testCases": [
+    {
+      "entrada": "4",
+      "saida": "24"
+    },
+    {
+      "entrada": "0",
+      "saida": "1"
+    },
+    {
+      "entrada": "1",
+      "saida": "1"
+    },
+    {
+      "entrada": "2",
+      "saida": "2"
+    },
+    {
+      "entrada": "3",
+      "saida": "6"
+    },
+    {
+      "entrada": "5",
+      "saida": "120"
+    },
+    {
+      "entrada": "7",
+      "saida": "5040"
+    },
+    {
+      "entrada": "10",
+      "saida": "3628800"
+    },
+    {
+      "entrada": "0",
+      "saida": "1"
+    },
+    {
+      "entrada": "1",
+      "saida": "1"
+    },
+    {
+      "entrada": "2",
+      "saida": "2"
+    },
+    {
+      "entrada": "3",
+      "saida": "6"
+    },
+    {
+      "entrada": "5",
+      "saida": "120"
+    },
+    {
+      "entrada": "7",
+      "saida": "5040"
+    },
+    {
+      "entrada": "10",
+      "saida": "3628800"
+    },
+    {
+      "entrada": "3",
+      "saida": "6"
+    },
+    {
+      "entrada": "5",
+      "saida": "120"
+    },
+    {
+      "entrada": "0",
+      "saida": "1"
+    },
+    {
+      "entrada": "1",
+      "saida": "1"
+    },
+    {
+      "entrada": "2",
+      "saida": "2"
+    },
+    {
+      "entrada": "7",
+      "saida": "5040"
+    },
+    {
+      "entrada": "10",
+      "saida": "3628800"
+    },
+    {
+      "entrada": "0",
+      "saida": "1"
+    },
+    {
+      "entrada": "1",
+      "saida": "1"
+    },
+    {
+      "entrada": "2",
+      "saida": "2"
+    },
+    {
+      "entrada": "3",
+      "saida": "6"
+    },
+    {
+      "entrada": "5",
+      "saida": "120"
+    },
+    {
+      "entrada": "7",
+      "saida": "5040"
+    },
+    {
+      "entrada": "10",
+      "saida": "3628800"
+    },
+    {
+      "entrada": "3",
+      "saida": "6"
+    },
+    {
+      "entrada": "5",
+      "saida": "120"
+    },
+    {
+      "entrada": "0",
+      "saida": "1"
+    },
+    {
+      "entrada": "1",
+      "saida": "1"
+    },
+    {
+      "entrada": "2",
+      "saida": "2"
+    },
+    {
+      "entrada": "7",
+      "saida": "5040"
+    },
+    {
+      "entrada": "10",
+      "saida": "3628800"
+    },
+    {
+      "entrada": "12",
+      "saida": "479001600"
+    }
+  ],
+  "summary": {
+    "total": 2,
+    "passed": 1,
+    "failed": 1,
+    "executionTime": 414.2374,
+    "memoryUsage": 10.317092895507812
+  },
+  "results": [
+    {
+      "caseId": "case_1",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "4",
+      "expected": "24",
+      "actual": "24",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 221.1219,
+      "memoryUsage": 10.051368713378906,
+      "timestamp": "2025-10-14T14:56:20.149Z"
+    },
+    {
+      "caseId": "case_2",
+      "status": "Success",
+      "verdict": "Wrong Answer",
+      "input": "0",
+      "expected": "1",
+      "actual": "Por favor, insira um valor v�lido para N.",
+      "error": "",
+      "errorType": "content_mismatch",
+      "diff": [
+        {
+          "position": 0,
+          "expected": "1",
+          "actual": "P"
+        },
+        {
+          "position": 1,
+          "expected": "",
+          "actual": "o"
+        },
+        {
+          "position": 2,
+          "expected": "",
+          "actual": "r"
+        }
+      ],
+      "executionTime": 193.1155,
+      "memoryUsage": 10.317092895507812,
+      "timestamp": "2025-10-14T14:56:20.150Z"
+    }
+  ]
+}
