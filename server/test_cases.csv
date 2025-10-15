@@ -234,14 +234,6 @@ sheldon",gerado
 26",267,gerado
 1,"150
 50",9320,gerado
-2,0,1,gerado
-2,1,1,gerado
-2,2,2,gerado
-2,3,6,gerado
-2,5,120,gerado
-2,7,5040,gerado
-2,11,39916800,gerado
-2,12,479001600,gerado
 1,"1
 10",55,gerado
 1,"10
@@ -364,3 +356,24 @@ papel pedra","sheldon
 rajesh
 empate
 rajesh",gerado
+5,"2
+2 1 2 3 4",2,gerado
+5,"3
+3 3 3 3 3",5,gerado
+5,"1
+2 3 4 2 3",0,gerado
+5,"4
+1 2 4 4 1",2,gerado
+5,"1
+1 1 1 1 1",5,gerado
+5,"4
+1 1 1 1 1",0,gerado
+5,"2
+1 2 1 2 1",2,gerado
+2,1,1,gerado
+2,3,6,gerado
+2,5,120,gerado
+2,7,5040,gerado
+2,10,3628800,gerado
+2,11,39916800,gerado
+2,12,479001600,gerado

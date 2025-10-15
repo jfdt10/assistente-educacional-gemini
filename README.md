@@ -1,23 +1,22 @@
 # 📚 Documentação Completa - Assistente Educacional Gemini
 
-**Versão:** 2.0.0  
-**Última atualização:** 14/10/2025
 
----
+**Versão:** 2.0.0  
+**Última atualização:** 15/10/2025
 
 ## 1. Visão Geral
 
 Este documento é o guia central para o Assistente Educacional Gemini, um sistema interativo projetado para auxiliar no aprendizado de programação. A plataforma combina uma interface de chat, um backend robusto para execução de código e a inteligência da IA Gemini para fornecer tutoria personalizada.
 
 **Principais Funcionalidades:**
-- **Frontend Interativo:** Interface de chat para interação com o usuário.
+Este documento é o guia central para o Assistente Educacional Gemini, um sistema interativo para aprendizado de programação. A plataforma combina uma interface de chat, backend para execução de código e IA Gemini para tutoria personalizada.
 - **Backend com Judge:** API REST em Node.js que utiliza o Judge(máquina do usuário-deve ter instalado os compiladores/interpretadores das linguagens suportadas) para executar código local.
+- **Tutoria com IA:** O Gemini guia os estudantes através de um fluxo pedagógico, desde a compreensão do problema até a depuração do código.
+- **Frontend Interativo:** Interface de chat para interação com o usuário.
+- **Backend com Judge:** API REST em Node.js que utiliza o Judge (máquina do usuário - deve ter instalado os compiladores/interpretadores das linguagens suportadas) para executar código local.
 - **Tutoria com IA:** O Gemini guia os estudantes através de um fluxo pedagógico, desde a compreensão do problema até a depuração do código.
 - **Validação e Segurança:** Múltiplas camadas de validação para garantir a integridade e a segurança dos dados.
 - **Feedback Visual:** Componentes visuais que mostram o progresso da execução dos testes em tempo real.
-
----
-
 ## 2. Guia de Início Rápido
 
 Siga estes passos para configurar e executar o ambiente de desenvolvimento local.
@@ -119,9 +118,6 @@ A API REST é o cérebro do sistema, responsável por gerenciar questões, casos
 ### `POST /cases`
 - **Descrição:** Salva novos casos de teste no banco de dados (`test_cases.csv`).
 - **Validações:** `casos` deve ser um array não vazio; cada caso deve ter `questao_id`, `entrada`, `saida`.
-- **Body:**
-  ```json
-  {
     "casos": [
       { "questao_id": "1", "entrada": "10 20", "saida": "30", "tipo": "gerado" }
     ]
@@ -130,12 +126,7 @@ A API REST é o cérebro do sistema, responsável por gerenciar questões, casos
 - **Resposta `201 OK`:**
   ```json
   { "ok": true, "count": 1, "message": "Casos de teste salvos com sucesso" }
-  ```
-
-### `POST /execute`
-- **Descrição:** Executa um único trecho de código com uma entrada específica.
 - **Validações:** `code` não pode ser vazio (máx 50KB); `language` deve ser suportada (`python`, `javascript`, `c`, `cpp`).
-- **Body:**
   ```json
   {
     "language": "python",
@@ -145,15 +136,11 @@ A API REST é o cérebro do sistema, responsável por gerenciar questões, casos
   }
   ```
 - **Resposta `200 OK`:**
-  ```json
   {
     "output": "8\n",
-    "error": "",
     "status": "Success",
-    "verdict": "Accepted",
     "executionTime": 45.2,
     "memoryUsage": 12.5
-  }
   ```
 
 ### `POST /execute-batch`

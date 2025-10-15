@@ -1,5 +1,5 @@
 // ---------------------- Configuração Inicial ----------------------
-const API_KEY = "";
+const API_KEY = "AIzaSyBSHDV9Tqp9EAcQ9g7wHfPP0Wi-FbEDeoA";
 
 import { errorHandler } from './errorHandler.js';
 import { feedbackVisual } from './feedbackVisual.js';
