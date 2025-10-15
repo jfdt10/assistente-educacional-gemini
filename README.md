@@ -11,7 +11,7 @@ Este documento é o guia central para o Assistente Educacional Gemini, um sistem
 
 **Principais Funcionalidades:**
 - **Frontend Interativo:** Interface de chat para interação com o usuário.
-- **Backend com Judge:** API REST em Node.js que utiliza o Judge para executar código local.
+- **Backend com Judge:** API REST em Node.js que utiliza o Judge(máquina do usuário-deve ter instalado os compiladores/interpretadores das linguagens suportadas) para executar código local.
 - **Tutoria com IA:** O Gemini guia os estudantes através de um fluxo pedagógico, desde a compreensão do problema até a depuração do código.
 - **Validação e Segurança:** Múltiplas camadas de validação para garantir a integridade e a segurança dos dados.
 - **Feedback Visual:** Componentes visuais que mostram o progresso da execução dos testes em tempo real.
