@@ -28,7 +28,6 @@ Siga estes passos para configurar e executar o ambiente de desenvolvimento local
 Verifique as instalações:
 ```bash
 node --version
-docker --version
 ```
 
 ### 2.2. Instalação das Dependências
