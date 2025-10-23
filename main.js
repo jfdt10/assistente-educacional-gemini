@@ -891,19 +891,19 @@ async function handleGuidedFlow(message) {
     return;
   }
 
-    const guidedSteps = {
+  const guidedSteps = {
         [STATES.CODIFICACAO_VARIAVEIS]: {
-            prompt: "\nO aluno declarou as variáveis. Se estiver correto, peça o processamento.",
+            prompt: "\nO aluno declarou as variáveis. Analise a resposta. Se a resposta for 100% correta e completa para esta etapa, inclua a tag [STEP_COMPLETE] no final da sua resposta. Caso contrário, apenas dê o feedback.",
             nextState: STATES.CODIFICACAO_PROCESSAMENTO,
             nextMessage: "⚙️ Ótimo! E como seria o PROCESSAMENTO (os cálculos ou a lógica principal) do programa?"
         },
         [STATES.CODIFICACAO_PROCESSAMENTO]: {
-            prompt: "\nO aluno descreveu o processamento. Se estiver correto, peça a saída.",
+            prompt: "\nO aluno descreveu o processamento. Analise a resposta. Se a resposta for 100% correta e completa para esta etapa, inclua a tag [STEP_COMPLETE] no final da sua resposta. Caso contrário, apenas dê o feedback.",
             nextState: STATES.CODIFICACAO_SAIDA,
             nextMessage: "📋 Perfeito! Agora, como você mostraria a SAÍDA (o resultado final)?"
         },
         [STATES.CODIFICACAO_SAIDA]: {
-            prompt: "\nO aluno descreveu a saída. Se estiver correto, parabenize e peça o código completo.",
+            prompt: "\nO aluno descreveu a saída. Analise a resposta. Se a resposta for 100% correta e completa para esta etapa, inclua a tag [STEP_COMPLETE] no final da sua resposta. Caso contrário, apenas dê o feedback.",
             nextState: STATES.AGUARDANDO_CODIGO,
             nextMessage: "🧪 Fantástico, a lógica está completa! Agora envie seu código completo usando o botão </> para alternar para o modo código."
         }
@@ -911,21 +911,26 @@ async function handleGuidedFlow(message) {
 
   const currentGuidedStep = guidedSteps[stateManager.getState()];
 
-    if (currentGuidedStep) {
+if (currentGuidedStep) {
         // Envia a mensagem do usuário para a IA e obtém o feedback
         const feedback = await sendToAPI(message, codificacaoInfo + currentGuidedStep.prompt);
-  updateSessionContext(stateManager.getState(), message, feedback);
+        updateSessionContext(stateManager.getState(), message, feedback);
         
-        const shouldAdvance = feedback.includes('✅');
+        const advanceToken = '[STEP_COMPLETE]';
+        const shouldAdvance = feedback.includes(advanceToken);
+        
+        // Remove o token da mensagem antes de exibi-la
+        const cleanFeedback = feedback.replace(advanceToken, '').trim();
 
-        addMessage(feedback, false); 
+        addMessage(cleanFeedback, false); // Exibe o feedback limpo
 
         if (shouldAdvance) {
             console.log(`✅ Avançando para próximo estado: ${currentGuidedStep.nextState}`);
             stateManager.transitionTo(currentGuidedStep.nextState);
             addMessage(currentGuidedStep.nextMessage, false);
         } else {
-            console.log(`⏸️ Aguardando resposta melhor. Feedback: ${feedback.substring(0, 50)}...`);
+            // Logica de "não avançar"
+            console.log(`⏸️ Aguardando resposta completa. Feedback: ${cleanFeedback.substring(0, 50)}...`);
         }
   } else if (stateManager.getState() === STATES.TESTES_DEPURACAO) {
         const extraContext = `O aluno está na fase de testes/depuração. A mensagem dele é: "${message}"`;
