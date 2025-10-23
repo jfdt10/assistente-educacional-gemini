@@ -58,21 +58,21 @@ class Validator {
         if (!Array.isArray(data.testCases) || data.testCases.length === 0) {
             errors.push('Campo "testCases" deve ser um array não vazio');
         } else {
-            if (data.testCases.length > 100) {
-                errors.push('Número máximo de casos de teste é 100');
+            if (data.testCases.length > 1000) {
+                errors.push('Número máximo de casos de teste é 1000');
             }
 
             data.testCases.forEach((testCase, index) => {
-                if (!testCase.entrada && testCase.entrada !== '') {
+                if (testCase.entrada === undefined || testCase.entrada === null) {
                     errors.push(`Caso de teste ${index + 1}: campo "entrada" é obrigatório`);
                 }
-                if (!testCase.saida && testCase.saida !== '') {
+                if (testCase.saida === undefined || testCase.saida === null) {
                     errors.push(`Caso de teste ${index + 1}: campo "saida" é obrigatório`);
                 }
-                if (typeof testCase.entrada !== 'string') {
+                if (testCase.entrada !== undefined && testCase.entrada !== null && typeof testCase.entrada !== 'string') {
                     errors.push(`Caso de teste ${index + 1}: campo "entrada" deve ser string`);
                 }
-                if (typeof testCase.saida !== 'string') {
+                if (testCase.saida !== undefined && testCase.saida !== null && typeof testCase.saida !== 'string') {
                     errors.push(`Caso de teste ${index + 1}: campo "saida" deve ser string`);
                 }
             });

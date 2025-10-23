@@ -1,0 +1,179 @@
+{
+  "submissionId": "batch_1761234748078",
+  "timestamp": "2025-10-23T15:52:28.078Z",
+  "language": "cpp",
+  "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int X, Y;\n    cin >> X >> Y;\n\n    // Troca se X for maior que Y\n    if (X > Y) {\n        int temp = X;\n        X = Y;\n        Y = temp;\n    }\n\n    int soma = 0;\n\n    // Loop de X até Y (inclusive)\n    for (int k = X; k <= Y; k++) {\n        if (k % 13 != 0) {\n            soma += k;\n        }\n    }\n\n    cout << soma << endl;\n\n    return 0;\n}",
+  "testCases": [
+    {
+      "entrada": "100\n200",
+      "saida": "13954"
+    },
+    {
+      "entrada": "1\n5",
+      "saida": "15"
+    },
+    {
+      "entrada": "10\n20",
+      "saida": "152"
+    },
+    {
+      "entrada": "12\n14",
+      "saida": "26"
+    },
+    {
+      "entrada": "25\n27",
+      "saida": "52"
+    },
+    {
+      "entrada": "13\n13",
+      "saida": "0"
+    },
+    {
+      "entrada": "1\n26",
+      "saida": "312"
+    },
+    {
+      "entrada": "200\n100",
+      "saida": "13954"
+    },
+    {
+      "entrada": "-30\n-10",
+      "saida": "-381"
+    }
+  ],
+  "summary": {
+    "total": 9,
+    "passed": 9,
+    "failed": 0,
+    "executionTime": 4785.0966,
+    "memoryUsage": 10.450927734375
+  },
+  "results": [
+    {
+      "caseId": "case_1",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "100\n200",
+      "expected": "13954",
+      "actual": "13954",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 1247.6502,
+      "memoryUsage": 9.923171997070312,
+      "timestamp": "2025-10-23T15:52:28.079Z"
+    },
+    {
+      "caseId": "case_2",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "1\n5",
+      "expected": "15",
+      "actual": "15",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 444.8954,
+      "memoryUsage": 10.165054321289062,
+      "timestamp": "2025-10-23T15:52:28.079Z"
+    },
+    {
+      "caseId": "case_3",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "10\n20",
+      "expected": "152",
+      "actual": "152",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 446.7975,
+      "memoryUsage": 9.875289916992188,
+      "timestamp": "2025-10-23T15:52:28.079Z"
+    },
+    {
+      "caseId": "case_4",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "12\n14",
+      "expected": "26",
+      "actual": "26",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 443.1348,
+      "memoryUsage": 10.061912536621094,
+      "timestamp": "2025-10-23T15:52:28.079Z"
+    },
+    {
+      "caseId": "case_5",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "25\n27",
+      "expected": "52",
+      "actual": "52",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 432.8172,
+      "memoryUsage": 10.270797729492188,
+      "timestamp": "2025-10-23T15:52:28.079Z"
+    },
+    {
+      "caseId": "case_6",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "13\n13",
+      "expected": "0",
+      "actual": "0",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 447.4538,
+      "memoryUsage": 10.450927734375,
+      "timestamp": "2025-10-23T15:52:28.079Z"
+    },
+    {
+      "caseId": "case_7",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "1\n26",
+      "expected": "312",
+      "actual": "312",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 443.5282,
+      "memoryUsage": 9.942626953125,
+      "timestamp": "2025-10-23T15:52:28.079Z"
+    },
+    {
+      "caseId": "case_8",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "200\n100",
+      "expected": "13954",
+      "actual": "13954",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 429.1942,
+      "memoryUsage": 10.130157470703125,
+      "timestamp": "2025-10-23T15:52:28.079Z"
+    },
+    {
+      "caseId": "case_9",
+      "status": "Success",
+      "verdict": "Accepted",
+      "input": "-30\n-10",
+      "expected": "-381",
+      "actual": "-381",
+      "error": "",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 449.6253,
+      "memoryUsage": 10.371788024902344,
+      "timestamp": "2025-10-23T15:52:28.079Z"
+    }
+  ]
+}

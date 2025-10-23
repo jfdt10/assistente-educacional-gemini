@@ -1,0 +1,47 @@
+{
+  "submissionId": "batch_1761232902578",
+  "timestamp": "2025-10-23T15:21:42.578Z",
+  "questionId": "test_manual",
+  "language": "python",
+  "code": "print(\"ok\")",
+  "testCases": [
+    {
+      "entrada": "",
+      "saida": ""
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "executionTime": 287.7472,
+    "memoryUsage": 9.346084594726562
+  },
+  "results": [
+    {
+      "caseId": "case_1",
+      "status": "Success",
+      "verdict": "Wrong Answer",
+      "input": "",
+      "expected": "",
+      "actual": "ok",
+      "error": "",
+      "errorType": "content_mismatch",
+      "diff": [
+        {
+          "position": 0,
+          "expected": "",
+          "actual": "o"
+        },
+        {
+          "position": 1,
+          "expected": "",
+          "actual": "k"
+        }
+      ],
+      "executionTime": 287.7472,
+      "memoryUsage": 9.346084594726562,
+      "timestamp": "2025-10-23T15:21:42.578Z"
+    }
+  ]
+}

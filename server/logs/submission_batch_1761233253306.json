@@ -1,0 +1,532 @@
+{
+  "submissionId": "batch_1761233253306",
+  "timestamp": "2025-10-23T15:27:33.306Z",
+  "questionId": "1",
+  "language": "c++",
+  "code": "#include <iostream>\nusing namespace std;\nint main() {\n    int X, Y;\n    cin >> X >> Y;\n    if (X > Y) { int temp = X; X = Y; Y = temp; }\n    int soma = 0;\n    for (int k = X; k <= Y; k++) {\n        if (k % 13 != 0) soma += k;\n    }\n    cout << soma << endl;\n    return 0;\n}",
+  "testCases": [
+    {
+      "entrada": "100\\n200",
+      "saida": "13954",
+      "tipo": "padrao"
+    },
+    {
+      "entrada": "1\n10",
+      "saida": "55",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "20\n1",
+      "saida": "197",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "5\n5",
+      "saida": "5",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "13\n13",
+      "saida": "0",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "-5\n5",
+      "saida": "0",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "-10\n15",
+      "saida": "52",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "1000\n1050",
+      "saida": "48193",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "1\n10",
+      "saida": "55",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "20\n10",
+      "saida": "152",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "13\n26",
+      "saida": "234",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "-5\n5",
+      "saida": "0",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "-30\n-1",
+      "saida": "-426",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "1\n12",
+      "saida": "78",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "10\n10",
+      "saida": "10",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "13\n13",
+      "saida": "0",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "1\n10",
+      "saida": "55",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "10\n20",
+      "saida": "152",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "10\n10",
+      "saida": "10",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "20\n10",
+      "saida": "152",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "0\n20",
+      "saida": "197",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "-20\n-1",
+      "saida": "-197",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "13\n39",
+      "saida": "624",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "1\n10",
+      "saida": "55",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "10\n20",
+      "saida": "152",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "20\n10",
+      "saida": "152",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "10\n10",
+      "saida": "10",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "-20\n-10",
+      "saida": "-152",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "-15\n15",
+      "saida": "0",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "1\n26",
+      "saida": "312",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "14\n25",
+      "saida": "234",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "1\n5",
+      "saida": "15",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "1\n20",
+      "saida": "197",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "20\n1",
+      "saida": "197",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "-5\n5",
+      "saida": "0",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "-20\n-1",
+      "saida": "-197",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "12\n14",
+      "saida": "26",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "13\n13",
+      "saida": "0",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "1\n100",
+      "saida": "4686",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "1\n15",
+      "saida": "107",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "15\n1",
+      "saida": "107",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "13\n26",
+      "saida": "234",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "5\n5",
+      "saida": "5",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "13\n13",
+      "saida": "0",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "-10\n10",
+      "saida": "0",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "-20\n-1",
+      "saida": "-197",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "500\n400",
+      "saida": "41862",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "1\n10",
+      "saida": "55",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "10\n20",
+      "saida": "152",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "20\n10",
+      "saida": "152",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "12\n14",
+      "saida": "26",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "13\n13",
+      "saida": "0",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "14\n14",
+      "saida": "14",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "-5\n5",
+      "saida": "0",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "-20\n-10",
+      "saida": "-152",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "1\n5",
+      "saida": "15",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "5\n1",
+      "saida": "15",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "10\n20",
+      "saida": "152",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "-5\n5",
+      "saida": "0",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "-15\n-10",
+      "saida": "-62",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "7\n7",
+      "saida": "7",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "13\n13",
+      "saida": "0",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "1\n50",
+      "saida": "1197",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "1\n10",
+      "saida": "55",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "10\n30",
+      "saida": "381",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "30\n10",
+      "saida": "381",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "-10\n10",
+      "saida": "0",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "0\n15",
+      "saida": "107",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "13\n20",
+      "saida": "119",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "26\n26",
+      "saida": "0",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "10\n10",
+      "saida": "10",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "1\n10",
+      "saida": "55",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "10\n20",
+      "saida": "152",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "14\n14",
+      "saida": "14",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "13\n26",
+      "saida": "234",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "20\n10",
+      "saida": "152",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "1\n12",
+      "saida": "78",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "14\n25",
+      "saida": "234",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "-5\n5",
+      "saida": "0",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "1\n10",
+      "saida": "55",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "1\n15",
+      "saida": "107",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "20\n10",
+      "saida": "152",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "5\n5",
+      "saida": "5",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "13\n13",
+      "saida": "0",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "-5\n10",
+      "saida": "40",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "10\n40",
+      "saida": "697",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "1\n10",
+      "saida": "55",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "20\n30",
+      "saida": "249",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "13\n13",
+      "saida": "0",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "-5\n5",
+      "saida": "0",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "-20\n-10",
+      "saida": "-152",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "13\n20",
+      "saida": "119",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "10\n26",
+      "saida": "267",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "150\n50",
+      "saida": "9320",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "1\n10",
+      "saida": "55",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "10\n1",
+      "saida": "55",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "10\n20",
+      "saida": "152",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "13\n26",
+      "saida": "234",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "5\n5",
+      "saida": "5",
+      "tipo": "gerado"
+    },
+    {
+      "entrada": "13\n13",
+      "saida": "0",
+      "tipo": "gerado"
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "executionTime": 2.1276,
+    "memoryUsage": 9.7347412109375
+  },
+  "results": [
+    {
+      "caseId": "case_1",
+      "status": "Runtime Error",
+      "verdict": "Runtime Error",
+      "input": "100\\n200",
+      "expected": "13954",
+      "actual": "",
+      "error": "Linguagem 'c++' não suportada.",
+      "errorType": "none",
+      "diff": [],
+      "executionTime": 2.1276,
+      "memoryUsage": 9.7347412109375,
+      "timestamp": "2025-10-23T15:27:33.307Z"
+    }
+  ]
+}
